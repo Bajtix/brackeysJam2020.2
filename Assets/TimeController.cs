@@ -20,6 +20,7 @@ public class TimeController : MonoBehaviour
 
     public ulong frame = 0;
     public bool playbackMode = false;
+    public float smoothingSpeed = 10;
 
     public List<TimeEntity> timeEntities;
 

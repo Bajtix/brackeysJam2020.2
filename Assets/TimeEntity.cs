@@ -5,6 +5,8 @@ public class TimeEntity : MonoBehaviour
 {
     public Behaviour[] componentsToDisable;
 
+    public bool local = false;
+
     public class TDATA
     {
         public Vector3 position;
@@ -55,13 +57,17 @@ public class TimeEntity : MonoBehaviour
 
         if (timeData.ContainsKey(frame))
         {
-            timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale);
-            Debug.Log("swapping frame");
+            if(local)
+                timeData[frame] = new TDATA(transform.localPosition, transform.localRotation, transform.localScale);
+            else
+                timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale);
         }
         else
         {
-            Debug.Log("adding frame");
-            timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale));
+            if (local)
+                timeData.Add(frame, new TDATA(transform.localPosition, transform.localRotation, transform.localScale));
+            else
+                timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale));
         }
     }
 
@@ -91,9 +97,17 @@ public class TimeEntity : MonoBehaviour
     {
         if (TimeController.instance.playbackMode)
         {
-            transform.position = Vector3.Lerp(transform.position, destPos, Time.deltaTime * 2);
-            transform.rotation = Quaternion.Lerp(transform.rotation, destRot, Time.deltaTime * 2);
-            transform.localScale = Vector3.Lerp(transform.localScale, destSiz, Time.deltaTime * 2);
+            if (local) 
+            {
+                transform.localPosition = Vector3.Lerp(transform.localPosition, destPos, Time.deltaTime * TimeController.instance.smoothingSpeed);
+                transform.localRotation = Quaternion.Lerp(transform.localRotation, destRot, Time.deltaTime * TimeController.instance.smoothingSpeed);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, destPos, Time.deltaTime * TimeController.instance.smoothingSpeed);
+                transform.rotation = Quaternion.Lerp(transform.rotation, destRot, Time.deltaTime * TimeController.instance.smoothingSpeed);
+            }
+            transform.localScale = Vector3.Lerp(transform.localScale, destSiz, Time.deltaTime * TimeController.instance.smoothingSpeed);
         }
     }
 }
