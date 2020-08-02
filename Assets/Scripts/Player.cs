@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public Transform cam;
 
@@ -13,6 +13,23 @@ public class PlayerController : MonoBehaviour
     private Vector3 gravity;
     private CharacterController controller;
 
+    public float playerEnergy = 5;
+    //[System.NonSerialized]
+    public float energy = 5;
+
+
+
+    #region Singleton
+    public static Player instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance);
+        instance = this;
+    }
+    #endregion
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -21,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        
         
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
         xRot -= Input.GetAxis("Mouse Y");
@@ -32,23 +50,18 @@ public class PlayerController : MonoBehaviour
         cam.localRotation = Quaternion.Euler(xRot, 0, 0);
 
         if (!controller.isGrounded)
-            gravity += Physics.gravity * gravityMultiplier;
+            gravity += Physics.gravity * gravityMultiplier * Time.deltaTime;
         else
         {
             if (Input.GetButton("Jump"))
             {
-                if (controller.isGrounded)
-                {
                     gravity += new Vector3(0, jumpForce, 0);
-                }
             }
             else
                 gravity = Vector3.zero;
         }
         controller.Move(gravity * Time.deltaTime);
-    }
-    private void FixedUpdate()
-    {      
         controller.Move(Time.deltaTime * (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed);
     }
+    
 }
