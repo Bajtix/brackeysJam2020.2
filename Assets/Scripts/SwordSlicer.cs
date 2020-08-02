@@ -11,6 +11,7 @@ public class SwordSlicer : MonoBehaviour
     private Vector3 lastPos;
     private Vector3 motion;
 
+    public Material swordMat;
 
     public bool slicing = false;
     private void Update()
@@ -23,7 +24,7 @@ public class SwordSlicer : MonoBehaviour
     {
         if (!slicing)
             return;
-        Material mat = collision.gameObject.GetComponent<MeshRenderer>().material;
+        Material mat = /*collision.gameObject.GetComponent<MeshRenderer>().material*/ swordMat;
 
         if(collision.gameObject.CompareTag("Sliceable"))
         {
@@ -51,9 +52,13 @@ public class SwordSlicer : MonoBehaviour
         {
             Rigidbody rb = obj.AddComponent<Rigidbody>();
             rb.interpolation = RigidbodyInterpolation.Interpolate;
+            TimeEntity entity = obj.AddComponent<TimeEntity>();
+            entity.componentsToDisable = new Behaviour[0];
+            entity.isInstance = true;
+            entity.local = true;
             MeshCollider col = obj.AddComponent<MeshCollider>();
             col.convex = true;
-            obj.tag = "Sliceable";
+            //obj.tag = "Sliceable";
             rb.AddExplosionForce(100, transform.position, 20);
         }
     }

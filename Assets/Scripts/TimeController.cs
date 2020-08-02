@@ -27,20 +27,22 @@ public class TimeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        playbackMode = Input.GetKey(KeyCode.F);
         if (playbackMode)
         {
             foreach (TimeEntity e in timeEntities)
             {
-                e.Play(frame);
+                if(e != null)
+                    e.Play(frame);
             }
-            frame--;
+            if(frame > 3)
+            frame-=2;
         }
         else
         {
             foreach (TimeEntity e in timeEntities)
-            {          
-                e.Record(frame);
+            {
+                if (e != null)
+                    e.Record(frame);
             }
             frame++;
         }

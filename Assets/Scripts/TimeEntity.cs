@@ -7,17 +7,21 @@ public class TimeEntity : MonoBehaviour
 
     public bool local = false;
 
+    public bool isInstance = false;
+
     public class TDATA
     {
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
+        public bool active;
 
-        public TDATA(Vector3 position, Quaternion rotation, Vector3 scale)
+        public TDATA(Vector3 position, Quaternion rotation, Vector3 scale, bool active = true)
         {
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;
+            this.active = active;
         }
     }
 
@@ -58,16 +62,16 @@ public class TimeEntity : MonoBehaviour
         if (timeData.ContainsKey(frame))
         {
             if(local)
-                timeData[frame] = new TDATA(transform.localPosition, transform.localRotation, transform.localScale);
+                timeData[frame] = new TDATA(transform.localPosition, transform.localRotation, transform.localScale,gameObject.activeSelf);
             else
-                timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale);
+                timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf);
         }
         else
         {
             if (local)
-                timeData.Add(frame, new TDATA(transform.localPosition, transform.localRotation, transform.localScale));
+                timeData.Add(frame, new TDATA(transform.localPosition, transform.localRotation, transform.localScale, gameObject.activeSelf));
             else
-                timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale));
+                timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf));
         }
     }
 
@@ -85,12 +89,16 @@ public class TimeEntity : MonoBehaviour
 
         if (!timeData.ContainsKey(frame))
         {
+            if (isInstance)
+                gameObject.SetActive(false);
             return;
         }
 
         destPos = timeData[frame].position;
         destRot = timeData[frame].rotation;
         destSiz = timeData[frame].scale;
+
+        gameObject.SetActive(timeData[frame].active);
     }
 
     private void Update()
