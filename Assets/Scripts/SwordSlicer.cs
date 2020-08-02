@@ -21,6 +21,8 @@ public class SwordSlicer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!slicing)
+            return;
         Material mat = collision.gameObject.GetComponent<MeshRenderer>().material;
 
         if(collision.gameObject.CompareTag("Sliceable"))

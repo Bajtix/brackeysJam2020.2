@@ -17,6 +17,8 @@ public class SwordController : MonoBehaviour
 
     public float energyDrown = 2f;
 
+    public SwordSlicer swordSlicer;
+
     private void Start()
     {
         swordLook = new GameObject("Sword Look").transform;
@@ -24,7 +26,7 @@ public class SwordController : MonoBehaviour
     private void Update()
     {
 
-
+        
         drawn = Input.GetButton("Fire1");
 
         if (drawn)
@@ -54,5 +56,7 @@ public class SwordController : MonoBehaviour
             sword.rotation = swordIdlePosition.rotation;
             Time.timeScale = 1;
         }
+
+        swordSlicer.slicing = drawn;
     }
 }
