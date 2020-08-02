@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         cam.localRotation = Quaternion.Euler(xRot, 0, 0);
 
         if (!controller.isGrounded)
-            gravity += Physics.gravity * Time.deltaTime * gravityMultiplier;
+            gravity += Physics.gravity * gravityMultiplier;
         else
         {
             if (Input.GetButton("Jump"))
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
             else
                 gravity = Vector3.zero;
         }
-        controller.Move(gravity);
+        controller.Move(gravity * Time.deltaTime);
     }
     private void FixedUpdate()
     {      
