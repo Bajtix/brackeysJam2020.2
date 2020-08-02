@@ -13,11 +13,20 @@ public class Player : MonoBehaviour
     private Vector3 gravity;
     private CharacterController controller;
 
+
+    [ColorUsage(true, true)]
+    public Color fullColor;
+
+    [ColorUsage(true, true)]
+    public Color emptyColor;
+
+    public Material EnergyVisualiser;
+
     public float playerEnergy = 5;
     //[System.NonSerialized]
     public float energy = 5;
 
-
+    Vector3 movement;
 
     #region Singleton
     public static Player instance;
@@ -38,8 +47,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        
-        
+        //EnergyVisualiser.SetFloat("Saturation", energy / playerEnergy);
+        EnergyVisualiser.SetColor("_EmissionColor", Color.Lerp(emptyColor, fullColor, energy / playerEnergy));
+
+        if (TimeController.instance.playbackMode) return;
+
+        gravity = Vector3.zero;
+
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X"), 0);
         xRot -= Input.GetAxis("Mouse Y");
         if (xRot > 90)
@@ -49,19 +63,17 @@ public class Player : MonoBehaviour
             xRot = -90;
         cam.localRotation = Quaternion.Euler(xRot, 0, 0);
 
-        if (!controller.isGrounded)
-            gravity += Physics.gravity * gravityMultiplier * Time.deltaTime;
-        else
-        {
-            if (Input.GetButton("Jump"))
-            {
-                    gravity += new Vector3(0, jumpForce, 0);
-            }
-            else
-                gravity = Vector3.zero;
-        }
-        controller.Move(gravity * Time.deltaTime);
-        controller.Move(Time.deltaTime * (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed);
+        float my = movement.y;
+        movement = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed;
+        movement.y = my;
+
+
+        if (controller.isGrounded && Input.GetButton("Jump"))
+            movement.y = jumpForce;
+
+        
+        movement.y -= gravityMultiplier * Time.deltaTime;
+        controller.Move(Time.deltaTime * movement);
     }
     
 }

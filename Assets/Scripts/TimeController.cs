@@ -36,6 +36,8 @@ public class TimeController : MonoBehaviour
             }
             if(frame > 3)
             frame-=2;
+
+            Player.instance.energy -= Time.unscaledDeltaTime / 2;
         }
         else
         {
