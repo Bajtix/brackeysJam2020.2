@@ -55,7 +55,11 @@ public class SwordController : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(transform.position, transform.forward, out hit))
             {
-                if(hit.collider.GetComponent<TimeEntity>())
+                if (hit.collider.GetComponent<TELinker>() != null)
+                {
+                    hit.collider.GetComponent<TELinker>().link.Lock(!hit.collider.GetComponent<TELinker>().link.locked);
+                }
+                else if (hit.collider.GetComponent<TimeEntity>() != null)
                 {
                     hit.collider.GetComponent<TimeEntity>().Lock(!hit.collider.GetComponent<TimeEntity>().locked);
                 }

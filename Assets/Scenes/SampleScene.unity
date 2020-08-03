@@ -412,8 +412,8 @@ MonoBehaviour:
   - {fileID: 73842170}
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1 &102518032
 GameObject:
@@ -679,8 +679,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1001 &321013714
 PrefabInstance:
@@ -1414,6 +1414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 341fc7500a2e43944afe47fdd952c8a8, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 341fc7500a2e43944afe47fdd952c8a8, type: 3}
 --- !u!4 &427539788 stripped
@@ -1546,8 +1550,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!4 &570276133 stripped
 Transform:
@@ -1613,8 +1617,8 @@ MonoBehaviour:
   emptyColor: {r: 7.4642644, g: 0, b: 0, a: 1}
   stopGlowColor: {r: 3.6078432, g: 4, b: 0, a: 1}
   EnergyVisualiser: {fileID: 2100000, guid: b6e15c645431c7c458277eecdb08461f, type: 2}
-  playerEnergy: 5
-  energy: 5
+  playerEnergy: 10
+  energy: 10
 --- !u!23 &626546706
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1695,8 +1699,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1 &743860848
 GameObject:
@@ -1876,8 +1880,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 1
   mats: []
 --- !u!1001 &816001843
 PrefabInstance:
@@ -2415,6 +2419,7 @@ MonoBehaviour:
   frame: 0
   playbackMode: 0
   smoothingSpeed: 10
+  padlockSprite: {fileID: 7267576945624096810, guid: e772df714c2a9a2479e0091627d64ba7, type: 3}
   timeEntities: []
 --- !u!4 &997900771
 Transform:
@@ -2581,8 +2586,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 1
   mats: []
 --- !u!4 &1155827134 stripped
 Transform:
@@ -2841,8 +2846,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1 &1302643899
 GameObject:
@@ -3427,8 +3432,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1 &1460667966
 GameObject:
@@ -3782,8 +3787,8 @@ MonoBehaviour:
   - {fileID: 1518503819}
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1001 &1519707372
 PrefabInstance:
@@ -3856,6 +3861,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Line Plank
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8c7a17b932180c40825771aee7830f3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1317170113103961355, guid: f8c7a17b932180c40825771aee7830f3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3880,6 +3889,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.167493, y: 12.404106, z: 0.34487787}
   m_Center: {x: -0.012770357, y: -0.0000009540549, z: 0.011145158}
+--- !u!114 &1519707378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519707373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67aa915c786c802468110b4c45ffa607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  link: {fileID: 1523097586}
 --- !u!1 &1523097584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f8c7a17b932180c40825771aee7830f3, type: 3}
@@ -3919,8 +3941,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 1
   mats: []
 --- !u!1 &1536669432
 GameObject:
@@ -4026,8 +4048,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!114 &1536669437
 MonoBehaviour:
@@ -5284,8 +5306,8 @@ MonoBehaviour:
   - {fileID: 1929219467}
   local: 1
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!1 &1972155383 stripped
 GameObject:
@@ -5357,9 +5379,22 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 1
   mats: []
+--- !u!114 &1979974932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979974926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67aa915c786c802468110b4c45ffa607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  link: {fileID: 1523097586}
 --- !u!4 &2017182861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2841064748791596740, guid: c14c3b56e2d73324283600124bf954b1, type: 3}
@@ -5428,8 +5463,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
-  canBeLocked: 0
   locked: 0
+  canBeLocked: 0
   mats: []
 --- !u!4 &2026129746 stripped
 Transform:

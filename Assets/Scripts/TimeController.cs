@@ -22,6 +22,8 @@ public class TimeController : MonoBehaviour
     public bool playbackMode = false;
     public float smoothingSpeed = 10;
 
+    public GameObject padlockSprite;
+
     public List<TimeEntity> timeEntities;
 
 
