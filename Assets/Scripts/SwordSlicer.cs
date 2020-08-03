@@ -29,7 +29,7 @@ public class SwordSlicer : MonoBehaviour
             return;
         Material mat = /*collision.gameObject.GetComponent<MeshRenderer>().material*/ swordMat;
         if (collision.gameObject.GetComponent<Interactable>() != null)
-            collision.gameObject.GetComponent<Interactable>().Slice();
+            collision.gameObject.GetComponent<Interactable>().Slice(motion);
         if (collision.gameObject.CompareTag("Sliceable"))
         {
             GameObject[] slicedObjects = SliceObject(collision.gameObject, transform.position, new Vector3(motion.y,motion.x,motion.z), mat);
