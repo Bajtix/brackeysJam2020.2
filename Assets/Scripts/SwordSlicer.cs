@@ -52,6 +52,11 @@ public class SwordSlicer : MonoBehaviour
 
     public void AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = false)
     {
+        if(slicedObjects == null)
+        {
+            Debug.LogWarning("Cutting failed");
+            return;
+        }
         foreach (GameObject obj in slicedObjects)
         {
             Rigidbody rb = obj.AddComponent<Rigidbody>();

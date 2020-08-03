@@ -412,6 +412,7 @@ MonoBehaviour:
   - {fileID: 73842170}
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &102518032
@@ -678,6 +679,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1001 &321013714
@@ -1544,6 +1546,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!4 &570276133 stripped
@@ -1607,7 +1610,8 @@ MonoBehaviour:
   jumpForce: 15
   gravityMultiplier: 25
   fullColor: {r: 0, g: 3.2313726, b: 5.9607844, a: 1}
-  emptyColor: {r: 8, g: 0, b: 0, a: 1}
+  emptyColor: {r: 7.4642644, g: 0, b: 0, a: 1}
+  stopGlowColor: {r: 3.6078432, g: 4, b: 0, a: 1}
   EnergyVisualiser: {fileID: 2100000, guid: b6e15c645431c7c458277eecdb08461f, type: 2}
   playerEnergy: 5
   energy: 5
@@ -1691,6 +1695,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &743860848
@@ -1871,6 +1876,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1001 &816001843
@@ -2575,6 +2581,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!4 &1155827134 stripped
@@ -2834,6 +2841,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &1302643899
@@ -3419,6 +3427,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &1460667966
@@ -3773,6 +3782,7 @@ MonoBehaviour:
   - {fileID: 1518503819}
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1001 &1519707372
@@ -3909,6 +3919,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &1536669432
@@ -4015,6 +4026,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!114 &1536669437
@@ -5272,6 +5284,7 @@ MonoBehaviour:
   - {fileID: 1929219467}
   local: 1
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!1 &1972155383 stripped
@@ -5344,6 +5357,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!4 &2017182861 stripped
@@ -5414,6 +5428,7 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  canBeLocked: 0
   locked: 0
   mats: []
 --- !u!4 &2026129746 stripped

@@ -9,7 +9,6 @@ public class TimeEntity : MonoBehaviour
 
     public bool isInstance = false;
 
-    public bool canBeLocked;
 
     public class TDATA
     {
@@ -38,11 +37,13 @@ public class TimeEntity : MonoBehaviour
     private Vector3 destSiz;
 
     public bool locked = false;
+
+    public bool canBeLocked = true;
     public Material[] mats;
 
     private void Start()
     {
-        mats = new Material[0];
+        /*mats = new Material[0];
         Debug.Log("Creating material dictionary");
         if(GetComponent<MeshRenderer>() != null)
         {
@@ -56,7 +57,7 @@ public class TimeEntity : MonoBehaviour
                 mats[i].SetColor("_EmissionColor", Player.instance.stopGlowColor);
             }
             GetComponent<MeshRenderer>().materials = mats;
-        }
+        }*/
 
         rb = GetComponent<Rigidbody>();
         if (rb != null)
@@ -148,8 +149,9 @@ public class TimeEntity : MonoBehaviour
 
     public void Lock(bool set)
     {
+        if (!canBeLocked) return;
         Debug.Log("Locking");
-        if (mats != null)
+        /*if (mats != null)
         {
             if (set)
                 foreach (Material m in mats)
@@ -161,11 +163,11 @@ public class TimeEntity : MonoBehaviour
                 {
                     m.DisableKeyword("_EMISSION");
                 }
-        }
+        }*/
 
         locked = set;
         foreach (TimeEntity te in transform.GetComponentsInChildren<TimeEntity>())
             /*te.Lock(set);*/
-            te.locked = true;
+            te.locked = set;
     }
 }
