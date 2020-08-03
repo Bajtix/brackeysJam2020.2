@@ -412,6 +412,8 @@ MonoBehaviour:
   - {fileID: 73842170}
   local: 1
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &102518032
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +678,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1001 &321013714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1502,7 +1506,6 @@ GameObject:
   m_Component:
   - component: {fileID: 569516853}
   - component: {fileID: 569516854}
-  - component: {fileID: 569516855}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -1541,20 +1544,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
---- !u!114 &569516855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569516852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab6a6bb15f2d8841900bfc213f8b097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordMat: {fileID: 0}
-  slicing: 0
+  locked: 0
+  mats: []
 --- !u!4 &570276133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5098096710836130797, guid: c14c3b56e2d73324283600124bf954b1, type: 3}
@@ -1700,6 +1691,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &743860848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,8 +1722,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743860848}
   m_LocalRotation: {x: -0.014856615, y: -0, z: -0, w: 0.9998896}
-  m_LocalPosition: {x: 0.0039999485, y: 0.031000037, z: 0.9940001}
-  m_LocalScale: {x: 0.18553255, y: 0.1, z: 1.3217124}
+  m_LocalPosition: {x: 0.0039999485, y: 0.0293, z: 0.9255}
+  m_LocalScale: {x: 0.18553255, y: 0.1, z: 1.1847712}
   m_Children:
   - {fileID: 370522899}
   m_Father: {fileID: 569516853}
@@ -1827,6 +1820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordMat: {fileID: 2100000, guid: b6e15c645431c7c458277eecdb08461f, type: 2}
+  controller: {fileID: 1536669438}
   slicing: 0
 --- !u!1 &761598130 stripped
 GameObject:
@@ -1877,6 +1871,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1001 &816001843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2031,7 +2027,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1413486840}
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2420,7 +2417,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997900769}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2578,6 +2575,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!4 &1155827134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4607132950270064289, guid: c14c3b56e2d73324283600124bf954b1, type: 3}
@@ -2835,6 +2834,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &1302643899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3216,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 572d65b30380b154694fe9764d2d84fd, type: 3}
+--- !u!1 &1413486839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413486840}
+  - component: {fileID: 1413486842}
+  - component: {fileID: 1413486841}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1413486840
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413486839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 846744397}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1413486841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413486839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.16862746}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1413486842
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413486839}
+  m_CullTransparentMesh: 0
 --- !u!1 &1460430648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,11 +3307,11 @@ GameObject:
   - component: {fileID: 1460430654}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Sliceable
+  m_TagString: SliceDeflector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1460430649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3343,6 +3419,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &1460667966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,6 +3773,8 @@ MonoBehaviour:
   - {fileID: 1518503819}
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1001 &1519707372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3829,6 +3909,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &1536669432
 GameObject:
   m_ObjectHideFlags: 0
@@ -3933,6 +4015,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!114 &1536669437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4009,7 +4093,9 @@ MonoBehaviour:
   swordIdlePosition: {fileID: 1302643900}
   swordDrawnPosition: {fileID: 1009824740}
   swordSpeed: 8
+  swordPredictionSpeed: 2
   trail: {fileID: 370522898}
+  prediction: 10
   timeSlowdown: 0.25
   energyDrown: 2
   swordSlicer: {fileID: 743860854}
@@ -5186,6 +5272,8 @@ MonoBehaviour:
   - {fileID: 1929219467}
   local: 1
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!1 &1972155383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3463204473679473335, guid: 283ea94848df4694c83faaa47b83d671, type: 3}
@@ -5256,6 +5344,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!4 &2017182861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2841064748791596740, guid: c14c3b56e2d73324283600124bf954b1, type: 3}
@@ -5324,6 +5414,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  locked: 0
+  mats: []
 --- !u!4 &2026129746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4428643878935567341, guid: c14c3b56e2d73324283600124bf954b1, type: 3}
@@ -5346,7 +5438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa529762f39c75d4caa1f5398e79a0de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.677
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa529762f39c75d4caa1f5398e79a0de, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5404,6 +5496,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 921d4d0ab076d8e4186aceaa35274841, type: 2}
+    - target: {fileID: 7202271454713460447, guid: aa529762f39c75d4caa1f5398e79a0de, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d403466256c95f46bffd7827670d479, type: 2}
     - target: {fileID: 8084854973141751649, guid: aa529762f39c75d4caa1f5398e79a0de, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sliceable
   - SliceReactor
+  - SliceDeflector
   layers:
   - Default
   - TransparentFX

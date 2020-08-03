@@ -9,12 +9,16 @@ public class TimeEntity : MonoBehaviour
 
     public bool isInstance = false;
 
+    public bool canBeLocked;
+
     public class TDATA
     {
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
         public bool active;
+
+        
 
         public TDATA(Vector3 position, Quaternion rotation, Vector3 scale, bool active = true)
         {
@@ -33,8 +37,27 @@ public class TimeEntity : MonoBehaviour
     private Quaternion destRot;
     private Vector3 destSiz;
 
+    public bool locked = false;
+    public Material[] mats;
+
     private void Start()
     {
+        mats = new Material[0];
+        Debug.Log("Creating material dictionary");
+        if(GetComponent<MeshRenderer>() != null)
+        {
+            mats = new Material[GetComponent<MeshRenderer>().materials.Length];
+            for(int i = 0; i< mats.Length; i++)
+            {
+                mats[i] = GetComponent<MeshRenderer>().materials[i];
+                Material wm = Instantiate(mats[i]);
+                mats[i] = wm;
+
+                mats[i].SetColor("_EmissionColor", Player.instance.stopGlowColor);
+            }
+            GetComponent<MeshRenderer>().materials = mats;
+        }
+
         rb = GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -77,33 +100,37 @@ public class TimeEntity : MonoBehaviour
 
     public void Play(ulong frame)
     {
-        if (rb != null)
+
+        if (!locked)
         {
-            rb.isKinematic = true;
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
+
+            foreach (Behaviour c in componentsToDisable)
+            {
+                c.enabled = false;
+            }
+
+            if (!timeData.ContainsKey(frame))
+            {
+                if (isInstance)
+                    gameObject.SetActive(false);
+                return;
+            }
+
+            destPos = timeData[frame].position;
+            destRot = timeData[frame].rotation;
+            destSiz = timeData[frame].scale;
+
+            gameObject.SetActive(timeData[frame].active);
         }
-
-        foreach (Behaviour c in componentsToDisable)
-        {
-            c.enabled = false;
-        }
-
-        if (!timeData.ContainsKey(frame))
-        {
-            if (isInstance)
-                gameObject.SetActive(false);
-            return;
-        }
-
-        destPos = timeData[frame].position;
-        destRot = timeData[frame].rotation;
-        destSiz = timeData[frame].scale;
-
-        gameObject.SetActive(timeData[frame].active);
     }
 
     private void Update()
     {
-        if (TimeController.instance.playbackMode)
+        if (TimeController.instance.playbackMode && !locked)
         {
             if (local) 
             {
@@ -117,5 +144,26 @@ public class TimeEntity : MonoBehaviour
             }
             transform.localScale = Vector3.Lerp(transform.localScale, destSiz, Time.deltaTime * TimeController.instance.smoothingSpeed);
         }
+    }
+
+    public void Lock(bool set)
+    {
+        Debug.Log("Locking");
+
+        if(set)
+            foreach(Material m in mats)
+            {
+                m.EnableKeyword("_EMISSION");                   
+            }
+        else
+            foreach (Material m in mats)
+            {
+                m.DisableKeyword("_EMISSION");
+            }
+
+        locked = set;
+        foreach (TimeEntity te in transform.GetComponentsInChildren<TimeEntity>())
+            /*te.Lock(set);*/
+            te.locked = true;
     }
 }

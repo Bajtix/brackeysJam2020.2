@@ -12,7 +12,7 @@ public class SwordSlicer : MonoBehaviour
     private Vector3 motion;
 
     public Material swordMat;
-
+    public SwordController controller;
     public bool slicing = false;
     private void Update()
     {
@@ -25,18 +25,19 @@ public class SwordSlicer : MonoBehaviour
         if (!slicing)
             return;
         Material mat = /*collision.gameObject.GetComponent<MeshRenderer>().material*/ swordMat;
-
-        if(collision.gameObject.CompareTag("Sliceable"))
-        {
-            GameObject[] slicedObjects = SliceObject(collision.gameObject, transform.position, new Vector3(-motion.y,-motion.x,-motion.z), mat);
-            
-            AddRigidbodyAndExplosions(slicedObjects);
-            collision.gameObject.SetActive(false);
-            
-        }
-        else if(collision.gameObject.CompareTag("SliceReactor"))
-        {
+        if (collision.gameObject.GetComponent<Interactable>() != null)
             collision.gameObject.GetComponent<Interactable>().Slice();
+        if (collision.gameObject.CompareTag("Sliceable"))
+        {
+            GameObject[] slicedObjects = SliceObject(collision.gameObject, transform.position, new Vector3(motion.y,motion.x,motion.z), mat);
+            if(collision.gameObject.GetComponent<TimeEntity>() != null)
+
+            AddRigidbodyAndExplosions(slicedObjects);
+            collision.gameObject.SetActive(false);          
+        }
+        else if(collision.gameObject.CompareTag("SliceDeflector"))
+        {
+            controller.Deflect();
         }
 
   
@@ -46,7 +47,7 @@ public class SwordSlicer : MonoBehaviour
         return obj.SliceInstantiate(worldPos, worldDir, crossSectionMaterial);
     }
 
-    public void AddRigidbodyAndExplosions(GameObject[] slicedObjects)
+    public void AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = true)
     {
         foreach (GameObject obj in slicedObjects)
         {
@@ -58,7 +59,7 @@ public class SwordSlicer : MonoBehaviour
             entity.local = true;
             MeshCollider col = obj.AddComponent<MeshCollider>();
             col.convex = true;
-            //obj.tag = "Sliceable";
+            obj.tag = "Sliceable";
             rb.AddExplosionForce(100, transform.position, 20);
         }
     }
