@@ -31,8 +31,11 @@ public class SwordSlicer : MonoBehaviour
         {
             GameObject[] slicedObjects = SliceObject(collision.gameObject, transform.position, new Vector3(motion.y,motion.x,motion.z), mat);
             if(collision.gameObject.GetComponent<TimeEntity>() != null)
-
-            AddRigidbodyAndExplosions(slicedObjects);
+            {
+                AddRigidbodyAndExplosions(slicedObjects, collision.gameObject.GetComponent<TimeEntity>().locked);
+            }
+            else
+                AddRigidbodyAndExplosions(slicedObjects);
             collision.gameObject.SetActive(false);          
         }
         else if(collision.gameObject.CompareTag("SliceDeflector"))
@@ -47,7 +50,7 @@ public class SwordSlicer : MonoBehaviour
         return obj.SliceInstantiate(worldPos, worldDir, crossSectionMaterial);
     }
 
-    public void AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = true)
+    public void AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = false)
     {
         foreach (GameObject obj in slicedObjects)
         {
@@ -57,6 +60,7 @@ public class SwordSlicer : MonoBehaviour
             entity.componentsToDisable = new Behaviour[0];
             entity.isInstance = true;
             entity.local = true;
+            entity.Lock(timelocked);
             MeshCollider col = obj.AddComponent<MeshCollider>();
             col.convex = true;
             obj.tag = "Sliceable";

@@ -149,17 +149,19 @@ public class TimeEntity : MonoBehaviour
     public void Lock(bool set)
     {
         Debug.Log("Locking");
-
-        if(set)
-            foreach(Material m in mats)
-            {
-                m.EnableKeyword("_EMISSION");                   
-            }
-        else
-            foreach (Material m in mats)
-            {
-                m.DisableKeyword("_EMISSION");
-            }
+        if (mats != null)
+        {
+            if (set)
+                foreach (Material m in mats)
+                {
+                    m.EnableKeyword("_EMISSION");
+                }
+            else
+                foreach (Material m in mats)
+                {
+                    m.DisableKeyword("_EMISSION");
+                }
+        }
 
         locked = set;
         foreach (TimeEntity te in transform.GetComponentsInChildren<TimeEntity>())
