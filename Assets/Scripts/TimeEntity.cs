@@ -9,7 +9,6 @@ public class TimeEntity : MonoBehaviour
 
     public bool isInstance = false;
 
-
     public class TDATA
     {
         public Vector3 position;
@@ -29,6 +28,8 @@ public class TimeEntity : MonoBehaviour
     }
 
     private Rigidbody rb;
+    private GameObject statusObject;
+
     private bool rbKinematic = false;
     public Dictionary<ulong, TDATA> timeData;
 
@@ -69,7 +70,7 @@ public class TimeEntity : MonoBehaviour
         TimeController.instance.timeEntities.Add(this);
     }
 
-
+    
 
     public void Record(ulong frame)
     {
@@ -131,6 +132,20 @@ public class TimeEntity : MonoBehaviour
 
     private void Update()
     {
+        if (statusObject != null && Camera.current != null)
+        {
+            statusObject.transform.position = Camera.current.WorldToScreenPoint(transform.position);
+            Vector3 viewPos = Camera.current.WorldToViewportPoint(transform.position);
+            if (!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
+            {
+                statusObject.SetActive(false);
+            }
+            else if (gameObject.activeSelf)
+                statusObject.SetActive(true);
+            else
+                statusObject.SetActive(false);
+        }
+
         if (TimeController.instance.playbackMode && !locked)
         {
             if (local) 
@@ -150,6 +165,13 @@ public class TimeEntity : MonoBehaviour
     public void Lock(bool set)
     {
         if (!canBeLocked) return;
+
+        if (set)
+        {
+            statusObject = Instantiate(TimeController.instance.padlockSprite, GameObject.FindObjectOfType<Canvas>().transform);
+        }
+        else
+            Destroy(statusObject);
         Debug.Log("Locking");
         /*if (mats != null)
         {
@@ -167,7 +189,6 @@ public class TimeEntity : MonoBehaviour
 
         locked = set;
         foreach (TimeEntity te in transform.GetComponentsInChildren<TimeEntity>())
-            /*te.Lock(set);*/
-            te.locked = set;
+                te.locked = set;
     }
 }

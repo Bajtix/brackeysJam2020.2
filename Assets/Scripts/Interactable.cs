@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent onSlice;
     public UnityEvent onE;
 
-    public virtual void Slice()
+    public virtual void Slice(Vector3 motion)
     {
         onSlice.Invoke();
     }

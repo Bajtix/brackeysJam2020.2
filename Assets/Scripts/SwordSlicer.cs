@@ -14,6 +14,9 @@ public class SwordSlicer : MonoBehaviour
     public Material swordMat;
     public SwordController controller;
     public bool slicing = false;
+
+    
+
     private void Update()
     {
         motion = lastPos - transform.position;
@@ -26,17 +29,17 @@ public class SwordSlicer : MonoBehaviour
             return;
         Material mat = /*collision.gameObject.GetComponent<MeshRenderer>().material*/ swordMat;
         if (collision.gameObject.GetComponent<Interactable>() != null)
-            collision.gameObject.GetComponent<Interactable>().Slice();
+            collision.gameObject.GetComponent<Interactable>().Slice(motion);
         if (collision.gameObject.CompareTag("Sliceable"))
         {
             GameObject[] slicedObjects = SliceObject(collision.gameObject, transform.position, new Vector3(motion.y,motion.x,motion.z), mat);
             if(collision.gameObject.GetComponent<TimeEntity>() != null)
             {
-                AddRigidbodyAndExplosions(slicedObjects, collision.gameObject.GetComponent<TimeEntity>().locked);
+                if(AddRigidbodyAndExplosions(slicedObjects, collision.gameObject.GetComponent<TimeEntity>().locked)) collision.gameObject.SetActive(false);
             }
             else
-                AddRigidbodyAndExplosions(slicedObjects);
-            collision.gameObject.SetActive(false);          
+                if(AddRigidbodyAndExplosions(slicedObjects)) collision.gameObject.SetActive(false);
+
         }
         else if(collision.gameObject.CompareTag("SliceDeflector"))
         {
@@ -50,12 +53,12 @@ public class SwordSlicer : MonoBehaviour
         return obj.SliceInstantiate(worldPos, worldDir, crossSectionMaterial);
     }
 
-    public void AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = false)
+    public bool AddRigidbodyAndExplosions(GameObject[] slicedObjects, bool timelocked = false)
     {
         if(slicedObjects == null)
         {
             Debug.LogWarning("Cutting failed");
-            return;
+            return false;
         }
         foreach (GameObject obj in slicedObjects)
         {
@@ -68,8 +71,9 @@ public class SwordSlicer : MonoBehaviour
             entity.Lock(timelocked);
             MeshCollider col = obj.AddComponent<MeshCollider>();
             col.convex = true;
-            obj.tag = "Sliceable";
+            //obj.tag = "Sliceable";
             rb.AddExplosionForce(100, transform.position, 20);
         }
+        return true;
     }
 }
