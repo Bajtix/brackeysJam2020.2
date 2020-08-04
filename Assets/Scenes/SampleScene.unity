@@ -1459,6 +1459,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 712869261}
+  - component: {fileID: 712869262}
   m_Layer: 0
   m_Name: Level Info
   m_TagString: Untagged
@@ -1480,6 +1481,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &712869262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712869260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff6a7c3972863d4a84b9831ef62d4db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelName: Old Shafts
+  levelDescription: 
+  eliminateEnemies: 0
+  time: 0
+  playerHealth: 0
+  playerEnergy: 0
+  enemyCount: 0
+  timeToComplete: 0
 --- !u!114 &727711349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2190378669280672878, guid: 2bbc317d5c2dbd348b6263ec0e89f1a2, type: 3}
