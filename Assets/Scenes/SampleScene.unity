@@ -412,6 +412,8 @@ MonoBehaviour:
   - {fileID: 73842170}
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -5552,6 +5554,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -6562,6 +6566,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -6643,6 +6649,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -6830,6 +6838,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -7021,6 +7031,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 1
   mats: []
@@ -7707,6 +7719,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: SliceReactor
       objectReference: {fileID: 0}
+    - target: {fileID: -3618652391291226683, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 670224309865224971, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
     - target: {fileID: -2848533608225254735, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
       propertyPath: m_TagString
       value: SliceReactor
@@ -7719,6 +7735,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: SliceDeflector
       objectReference: {fileID: 0}
+    - target: {fileID: 1900417856521838841, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 670224309865224971, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+    - target: {fileID: 4301736512311083855, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 670224309865224971, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
     - target: {fileID: 7368002659860420144, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
       propertyPath: m_TagString
       value: SliceDeflector
@@ -7905,6 +7929,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1313918, y: 0.8712782, z: 0.10818376}
   m_Center: {x: 0.00000011920929, y: -0.29521888, z: 0.47772834}
+--- !u!33 &998603939
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603929}
+  m_Mesh: {fileID: 8245052534610074984, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+--- !u!114 &998603940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable:
+  - {fileID: 998603932}
+  local: 0
+  isInstance: 0
+  controlRigidbody: 0
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
+--- !u!33 &998603942
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603930}
+  m_Mesh: {fileID: 5423824031889426524, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+--- !u!114 &998603943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable:
+  - {fileID: 998603934}
+  local: 0
+  isInstance: 0
+  controlRigidbody: 0
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
 --- !u!54 &998603944
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7953,6 +8035,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!33 &998603948
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603931}
+  m_Mesh: {fileID: 7738312192188353508, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
+--- !u!114 &998603949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998603931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable:
+  - {fileID: 998603936}
+  local: 0
+  isInstance: 0
+  controlRigidbody: 0
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
 --- !u!4 &1008179985 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8373379933274150539, guid: 54ac35b8964901c4c95059f68e1debb4, type: 3}
@@ -8109,6 +8220,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 1
   mats: []
@@ -8212,6 +8325,8 @@ MonoBehaviour:
   - {fileID: 1069483833}
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 1
   mats: []
@@ -8486,6 +8601,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -9177,6 +9294,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -9532,6 +9651,8 @@ MonoBehaviour:
   - {fileID: 1518503819}
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -9686,6 +9807,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 1
   mats: []
@@ -9793,6 +9916,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -11231,6 +11356,8 @@ MonoBehaviour:
   - {fileID: 1929219467}
   local: 1
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []
@@ -11309,6 +11436,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 1
   mats: []
@@ -11393,6 +11522,8 @@ MonoBehaviour:
   componentsToDisable: []
   local: 0
   isInstance: 0
+  controlRigidbody: 1
+  metadata: 
   locked: 0
   canBeLocked: 0
   mats: []

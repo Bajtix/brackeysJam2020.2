@@ -58,7 +58,7 @@ Material:
     m_Floats:
     - Desaturated: 0.4
     - Saturated: 1
-    - Saturation: -2.9
+    - Saturation: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

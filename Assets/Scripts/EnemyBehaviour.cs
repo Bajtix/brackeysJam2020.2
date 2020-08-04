@@ -28,6 +28,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     public int hp;
 
+    public TimeEntity timeEntity;
+
     private bool runToPlayer = true;
 
     private void Start()
@@ -41,19 +43,27 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         activationDelay -= Time.deltaTime;
-        
-        if(activationDelay <= 0)
-        {
-            weapon.gameObject.SetActive(true);
-            DoAI();
-            handTargetR.position = weapon.holdR.position;
-            handTargetR.rotation = weapon.holdR.rotation;
-            iKConstraintR.weight = RWEIGHT;
 
-            handTargetL.position = weapon.holdL.position;
-            handTargetL.rotation = weapon.holdL.rotation;
-            iKConstraintL.weight = LWEIGHT;
+        if (TimeController.instance.playbackMode)
+            hp = int.Parse(timeEntity.metadata);
+        else
+        {
+            timeEntity.metadata = hp.ToString();
+            if (activationDelay <= 0)
+            {
+                weapon.gameObject.SetActive(true);
+                DoAI();
+                handTargetR.position = weapon.holdR.position;
+                handTargetR.rotation = weapon.holdR.rotation;
+                iKConstraintR.weight = RWEIGHT;
+
+                handTargetL.position = weapon.holdL.position;
+                handTargetL.rotation = weapon.holdL.rotation;
+                iKConstraintL.weight = LWEIGHT;
+            }
         }
+
+
     }
 
     public void DoAI()

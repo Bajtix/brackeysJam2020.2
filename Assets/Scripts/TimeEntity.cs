@@ -9,7 +9,8 @@ public class TimeEntity : MonoBehaviour
     public bool local = false;
 
     public bool isInstance = false;
-    [NonSerialized]
+
+    public bool controlRigidbody = true;
     public string metadata;
     public class TDATA
     {
@@ -77,7 +78,7 @@ public class TimeEntity : MonoBehaviour
 
     public void Record(ulong frame)
     {
-        if (rb != null)
+        if (rb != null && controlRigidbody)
         {
             rb.isKinematic = rbKinematic;
         }
@@ -116,7 +117,7 @@ public class TimeEntity : MonoBehaviour
 
         if (!locked)
         {
-            if (rb != null)
+            if (rb != null && controlRigidbody)
             {
                 rb.isKinematic = true;
             }
