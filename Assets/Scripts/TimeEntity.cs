@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeEntity : MonoBehaviour
@@ -8,22 +9,24 @@ public class TimeEntity : MonoBehaviour
     public bool local = false;
 
     public bool isInstance = false;
-
+    [NonSerialized]
+    public string metadata;
     public class TDATA
     {
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
         public bool active;
+        public string additionalData = "";
 
-        
 
-        public TDATA(Vector3 position, Quaternion rotation, Vector3 scale, bool active = true)
+        public TDATA(Vector3 position, Quaternion rotation, Vector3 scale, bool active = true, string additionalData = "")
         {
             this.position = position;
             this.rotation = rotation;
             this.scale = scale;
             this.active = active;
+            this.additionalData = additionalData;
         }
     }
 
@@ -70,7 +73,7 @@ public class TimeEntity : MonoBehaviour
         TimeController.instance.timeEntities.Add(this);
     }
 
-    
+
 
     public void Record(ulong frame)
     {
@@ -86,17 +89,25 @@ public class TimeEntity : MonoBehaviour
 
         if (timeData.ContainsKey(frame))
         {
-            if(local)
-                timeData[frame] = new TDATA(transform.localPosition, transform.localRotation, transform.localScale,gameObject.activeSelf);
+            if (local)
+            {
+                timeData[frame] = new TDATA(transform.localPosition, transform.localRotation, transform.localScale, gameObject.activeSelf, metadata);
+            }
             else
-                timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf);
+            {
+                timeData[frame] = new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf, metadata);
+            }
         }
         else
         {
             if (local)
-                timeData.Add(frame, new TDATA(transform.localPosition, transform.localRotation, transform.localScale, gameObject.activeSelf));
+            {
+                timeData.Add(frame, new TDATA(transform.localPosition, transform.localRotation, transform.localScale, gameObject.activeSelf, metadata));
+            }
             else
-                timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf));
+            {
+                timeData.Add(frame, new TDATA(transform.position, transform.rotation, transform.localScale, gameObject.activeSelf, metadata));
+            }
         }
     }
 
@@ -118,10 +129,14 @@ public class TimeEntity : MonoBehaviour
             if (!timeData.ContainsKey(frame))
             {
                 if (isInstance)
+                {
                     gameObject.SetActive(false);
+                }
+
                 return;
             }
 
+            metadata = timeData[frame].additionalData;
             destPos = timeData[frame].position;
             destRot = timeData[frame].rotation;
             destSiz = timeData[frame].scale;
@@ -141,14 +156,18 @@ public class TimeEntity : MonoBehaviour
                 statusObject.SetActive(false);
             }
             else if (gameObject.activeSelf)
+            {
                 statusObject.SetActive(true);
+            }
             else
+            {
                 statusObject.SetActive(false);
+            }
         }
 
         if (TimeController.instance.playbackMode && !locked)
         {
-            if (local) 
+            if (local)
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, destPos, Time.deltaTime * TimeController.instance.smoothingSpeed);
                 transform.localRotation = Quaternion.Lerp(transform.localRotation, destRot, Time.deltaTime * TimeController.instance.smoothingSpeed);
@@ -164,14 +183,20 @@ public class TimeEntity : MonoBehaviour
 
     public void Lock(bool set)
     {
-        if (!canBeLocked) return;
+        if (!canBeLocked)
+        {
+            return;
+        }
 
         if (set)
         {
             statusObject = Instantiate(TimeController.instance.padlockSprite, GameObject.FindObjectOfType<Canvas>().transform);
         }
         else
+        {
             Destroy(statusObject);
+        }
+
         Debug.Log("Locking");
         /*if (mats != null)
         {
@@ -189,6 +214,8 @@ public class TimeEntity : MonoBehaviour
 
         locked = set;
         foreach (TimeEntity te in transform.GetComponentsInChildren<TimeEntity>())
-                te.locked = set;
+        {
+            te.locked = set;
+        }
     }
 }

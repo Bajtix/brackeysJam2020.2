@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 0.1f;
     public float gravityMultiplier = 0.1f;
+
+    public float maxHP;
+
+    public float HP;
     private float xRot = 0;
     private float yRot = 0;
     private float dxRot = 0;
@@ -25,6 +29,7 @@ public class Player : MonoBehaviour
     public Color stopGlowColor;
 
     public Material EnergyVisualiser;
+    public Material HealthVisualiser;
 
     public float playerEnergy = 5;
     //[System.NonSerialized]
@@ -32,7 +37,6 @@ public class Player : MonoBehaviour
     private Vector3 movement;
 
     private GameObject cmhelper;
-    private bool lerp;
 
     private Vector2 camMotion;
     private Vector2 camLast;
@@ -57,6 +61,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         cmhelper = new GameObject("Camera Rotation Helper");
+        HP = maxHP;
     }
 
     private void Update()
@@ -64,7 +69,7 @@ public class Player : MonoBehaviour
         camMotion = new Vector2(xRot, yRot) - camLast;
         camLast = new Vector2(xRot, yRot);
 
-        //EnergyVisualiser.SetFloat("Saturation", energy / playerEnergy);
+        HealthVisualiser.SetFloat("Saturation", HP / maxHP);
         EnergyVisualiser.SetColor("_EmissionColor", Color.Lerp(emptyColor, fullColor, energy / playerEnergy));
 
         if (TimeController.instance.playbackMode)
@@ -107,10 +112,16 @@ public class Player : MonoBehaviour
         movement.y = my;
 
 
-        if (controller.isGrounded && Input.GetButton("Jump"))
+        if (controller.isGrounded)
         {
-            movement.y = jumpForce;
+            movement.y = 0;
+            if (Input.GetButton("Jump"))
+            {
+                movement.y = jumpForce;
+            }
         }
+
+
 
         movement.y -= gravityMultiplier * Time.deltaTime;
         controller.Move(Time.deltaTime * movement);
@@ -119,9 +130,8 @@ public class Player : MonoBehaviour
     public void CameraLook(Vector3 position)
     {
         cmhelper.transform.LookAt(position);
-        lerp = true;
-        dyRot -= Mathf.Pow(1.01f, camMotion.y) * 50;
-        dxRot -= Mathf.Pow(1.01f, camMotion.x) * 50;
+        dyRot -= camMotion.y * 70;
+        dxRot -= camMotion.x * 70;
 
     }
 

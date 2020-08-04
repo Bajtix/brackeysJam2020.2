@@ -15,10 +15,8 @@ public class PostProcessingFix : MonoBehaviour
         GetComponent<PostProcessLayer>().Init(postProcessResources);
     }
 
-    /*[ExecuteInEditMode]
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        Debug.Log("executing");
-        //Graphics.Blit(source, destination, ifx);
-    }*/
+        Graphics.Blit(source, destination, ifx);
+    }
 }
