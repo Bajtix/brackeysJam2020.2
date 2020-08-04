@@ -15,10 +15,11 @@ public class Player : MonoBehaviour
     private float yRot = 0;
     private float dxRot = 0;
     private float dyRot = 0;
+
     private Vector3 gravity;
     private CharacterController controller;
 
-
+    
     [ColorUsage(true, true)]
     public Color fullColor;
 
@@ -42,6 +43,7 @@ public class Player : MonoBehaviour
     private Vector2 camLast;
 
 
+
     #region Singleton
     public static Player instance;
 
@@ -58,6 +60,12 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        playerEnergy = LevelInfo.instance.playerEnergy;
+        energy = LevelInfo.instance.playerEnergy;
+        HP = LevelInfo.instance.playerHealth;
+        maxHP = LevelInfo.instance.playerHealth;
+
+
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
         cmhelper = new GameObject("Camera Rotation Helper");
