@@ -41,10 +41,10 @@ public class EnemyBehaviour : MonoBehaviour
             agent.isStopped = true;
         }
 
-        if (agent.speed > 0.01f)
-            animator.SetBool("Walking", true);
-        else
+        if (agent.isStopped)
             animator.SetBool("Walking", false);
+        else
+            animator.SetBool("Walking", true);
     }
 
     public void Hit()

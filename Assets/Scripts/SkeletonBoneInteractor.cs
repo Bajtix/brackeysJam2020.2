@@ -12,7 +12,9 @@ public class SkeletonBoneInteractor : Interactable
         gameObject.AddComponent<MeshRenderer>().material = GetComponent<SkinnedMeshRenderer>().material;
         Destroy(GetComponent<SkinnedMeshRenderer>());
         GetComponent<Rigidbody>().AddForce(-motion / Time.deltaTime * 50);
-
+        transform.parent = null;
+        base.Slice(motion);
         Destroy(this);
+
     }
 }
