@@ -219,4 +219,9 @@ public class TimeEntity : MonoBehaviour
             te.locked = set;
         }
     }
+
+    private void OnDisable()
+    {
+        Destroy(statusObject);
+    }
 }
