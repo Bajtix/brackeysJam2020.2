@@ -138,11 +138,11 @@ GameObject:
   - component: {fileID: 41393708}
   - component: {fileID: 41393707}
   m_Layer: 0
-  m_Name: New Game Object (1)
+  m_Name: "pod\u0142oga"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &41393707
 MeshCollider:
@@ -431,6 +431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
 --- !u!1001 &128081982
@@ -496,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
 --- !u!1 &157809158
@@ -514,11 +522,11 @@ GameObject:
   - component: {fileID: 157809160}
   - component: {fileID: 157809159}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: "\u015Bciany"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!320 &157809159
 PlayableDirector:
@@ -1302,6 +1310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock 1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
 --- !u!1001 &301253848
@@ -1387,7 +1399,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!320 &307591477
 PlayableDirector:
@@ -1679,9 +1691,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -1714,8 +1726,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 768
-    _typelessdata: 000e67bd004bf63dfcf49c40000000000000803f000000000000803f0000000000000000000080bf000e67bdfcf49c40fc7934c0004bf63df48a973f000000000000803f000000000000803f0000000000000000000080bffc7934c0f48a973f9c6d22c0004bf63da090a040000000000000803f000000000000803f0000000000000000000080bf9c6d22c0a090a0404002673e004bf63d40faa53f000000000000803f000000000000803f0000000000000000000080bf4002673e40faa53fa4161341004bf63d86030a41000000000000803f000000000000803f0000000000000000000080bfa416134186030a41ea9fa040004bf63df48a973f000000000000803f000000000000803f0000000000000000000080bfea9fa040f48a973f51a0a040004bf63d7aea0a41000000000000803f000000000000803f0000000000000000000080bf51a0a0407aea0a41adb21641004bf63d7aea0ac1000000000000803f000000000000803f0000000000000000000080bfadb216417aea0ac1ae039d40004bf63d82030ac1000000000000803f000000000000803f0000000000000000000080bfae039d4082030ac1ced19e40004bf63d6cc21ec0000000000000803f000000000000803f0000000000000000000080bfced19e406cc21ec04002673e004bf63d8c8b17c0000000000000803f000000000000803f0000000000000000000080bf4002673e8c8b17c00097bb3e004bf63de207c2c0000000000000803f000000000000803f0000000000000000000080bf0097bb3ee207c2c0341638c0004bf63de809c1c0000000000000803f000000000000803f0000000000000000000080bf341638c0e809c1c09cd136c0004bf63d282114c0000000000000803f000000000000803f0000000000000000000080bf9cd136c0282114c0a9e414c1004bf63d9cc29e3f000000000000803f000000000000803f0000000000000000000080bfa9e414c19cc29e3fadb216c1004bf63dd0c21ec0000000000000803f000000000000803f0000000000000000000080bfadb216c1d0c21ec0
+    m_DataSize: 896
+    _typelessdata: 000e67bd004bf63dfcf49c40000000000000803f000000000000803f0000000000000000000080bf000e67bdfcf49c40dd3efe3e3306393ffc7934c0004bf63df48a973f000000000000803f000000000000803f0000000000000000000080bffc7934c0f48a973f5b05243f0dac083f9c6d22c0004bf63da090a040000000000000803f000000000000803f0000000000000000000080bf9c6d22c0a090a04036aa1f3f96ed3a3f4002673e004bf63d40faa53f000000000000803f000000000000803f0000000000000000000080bf4002673e40faa53f4714f83e84a1093fa4161341004bf63d86030a41000000000000803f000000000000803f0000000000000000000080bfa416134186030a410bd7a33c5344683fea9fa040004bf63df48a973f000000000000803f000000000000803f0000000000000000000080bfea9fa040f48a973f2a9f743ed454073f51a0a040004bf63d7aea0a41000000000000803f000000000000803f0000000000000000000080bf51a0a0407aea0a41487d6f3e75b8693fadb21641004bf63d7aea0ac1000000000000803f000000000000803f0000000000000000000080bfadb216417aea0ac10bd7a33c0bd7a33cae039d40004bf63d82030ac1000000000000803f000000000000803f0000000000000000000080bfae039d4082030ac18ba0803ed335d43cced19e40004bf63d6cc21ec0000000000000803f000000000000803f0000000000000000000080bfced19e406cc21ec0e3167a3e6d83ae3e4002673e004bf63d8c8b17c0000000000000803f000000000000803f0000000000000000000080bf4002673e8c8b17c02b55f93e8e17b33e0097bb3e004bf63de207c2c0000000000000803f000000000000803f0000000000000000000080bf0097bb3ee207c2c0ece6f63e3d1f243e341638c0004bf63de809c1c0000000000000803f000000000000803f0000000000000000000080bf341638c0e809c1c0cefe253fb9f7273e9cd136c0004bf63d282114c0000000000000803f000000000000803f0000000000000000000080bf9cd136c0282114c07719253ffd8bb53ea9e414c1004bf63d9cc29e3f000000000000803f000000000000803f0000000000000000000080bfa9e414c19cc29e3fa41d793f70850a3fadb216c1004bf63dd0c21ec0000000000000803f000000000000803f0000000000000000000080bfadb216c1d0c21ec0743b7b3f9a6eb33e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1841,6 +1853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock 2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
 --- !u!1001 &683519717
@@ -1913,6 +1929,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 20b9debf62fa29544a826d815ef997bf, type: 3}
       propertyPath: m_Name
       value: rock 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20b9debf62fa29544a826d815ef997bf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20b9debf62fa29544a826d815ef997bf, type: 3}
@@ -2651,6 +2671,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eef20ecea86b24e42abdaf738138b265, type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eef20ecea86b24e42abdaf738138b265, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eef20ecea86b24e42abdaf738138b265, type: 3}
@@ -7586,6 +7610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock 2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d0b011287e431a40b360ddbed568cdd, type: 3}
 --- !u!1001 &1998213925
@@ -7715,6 +7743,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
       propertyPath: m_Name
       value: rock 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b27d6a7af0cd534891dd01341a56048, type: 3}
