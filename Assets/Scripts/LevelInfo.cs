@@ -209,10 +209,10 @@ public class LevelInfo : MonoBehaviour
                 checks[1] = true;
             if (eliminateEnemies)
             {
-                checks[3] = killedEnemies >= enemyCount;
+                checks[2] = killedEnemies >= enemyCount;
             }
             else
-                checks[3] = true;
+                checks[2] = true;
         }
     }
 
@@ -231,6 +231,28 @@ public class LevelInfo : MonoBehaviour
         AsyncOperation o = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Single);
         o.allowSceneActivation = false;
         LeanTween.delayedCall(3, () => {
+            videoPlayer.Stop();
+            maskPlayer.Stop();
+            o.allowSceneActivation = true;
+        });
+    }
+
+    public void ReloadLevel()
+    {
+        LeanTween.delayedCall(2.1f, () =>
+        {
+            Player.instance.gameObject.SetActive(false);
+            levelCamera.SetActive(true);
+        });
+        videoPlayer.time = 0;
+        maskPlayer.time = 0;
+        videoPlayer.Play();
+        maskPlayer.Play();
+        display.SetActive(true);
+        AsyncOperation o = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        o.allowSceneActivation = false;
+        LeanTween.delayedCall(3, () =>
+        {
             videoPlayer.Stop();
             maskPlayer.Stop();
             o.allowSceneActivation = true;
