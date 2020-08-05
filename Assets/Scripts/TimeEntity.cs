@@ -148,10 +148,10 @@ public class TimeEntity : MonoBehaviour
 
     private void Update()
     {
-        if (statusObject != null && Camera.current != null)
+        if (statusObject != null && Player.instance.GetComponent<Player>().cam.GetComponent<Camera>() != null)
         {
-            statusObject.transform.position = Camera.current.WorldToScreenPoint(transform.position);
-            Vector3 viewPos = Camera.current.WorldToViewportPoint(transform.position);
+            statusObject.transform.position = Player.instance.GetComponent<Player>().cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
+            Vector3 viewPos = Player.instance.GetComponent<Player>().cam.GetComponent<Camera>().WorldToViewportPoint(transform.position);
             if (!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
             {
                 statusObject.SetActive(false);
@@ -159,6 +159,7 @@ public class TimeEntity : MonoBehaviour
             else if (gameObject.activeSelf)
             {
                 statusObject.SetActive(true);
+                statusObject.transform.position = Player.instance.GetComponent<Player>().cam.GetComponent<Camera>().WorldToScreenPoint(transform.position);
             }
             else
             {

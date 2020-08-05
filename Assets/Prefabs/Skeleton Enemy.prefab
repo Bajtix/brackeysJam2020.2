@@ -5238,7 +5238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable: []
   local: 0
-  isInstance: 0
+  isInstance: 1
   controlRigidbody: 1
   metadata: 
   locked: 0
