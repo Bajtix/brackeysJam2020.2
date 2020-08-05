@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class LevelInfo : MonoBehaviour
 {
@@ -39,23 +41,38 @@ public class LevelInfo : MonoBehaviour
     public TextMeshProUGUI timelimit, killlimit, levelname, leveldescription, health, energy;
     public GameObject crosshair;
     public float typeWriterSpeed = 0.1f;
-    
+
+
+    public VideoPlayer maskPlayer, videoPlayer;
+
+    public GameObject display;
+
+    public int nextLevel;
+
+    private GameObject levelCamera;
 
     private void Start()
     {
+        maskPlayer.time = 3;
+        videoPlayer.time = 3;
+
+        videoPlayer.Play();
+        maskPlayer.Play();
+        display.SetActive(true);
+
         fader.alpha = 1;
         crosshair.SetActive(false);
         Player.instance.gameObject.SetActive(false);
-        GameObject.FindGameObjectWithTag("LevelCamera").SetActive(true);
+        levelCamera = GameObject.FindGameObjectWithTag("LevelCamera");
         LeanTween.alphaCanvas(fader, 0, 1);
 
         levelname.text = levelName;
         leveldescription.text = "";
         timelimit.text = "Time goal: " + timeToComplete + "s";
         killlimit.text = "Kill goal: " + enemyCount + " enemies";
-        LeanTween.delayedCall(2, () =>
+        LeanTween.delayedCall(5, () =>
         {
-
+            display.SetActive(false);
             LeanTween.alphaCanvas(panel, 1, 2).setOnComplete(() =>
             {
                 StartCoroutine("WriteDescription");
@@ -136,7 +153,7 @@ public class LevelInfo : MonoBehaviour
                     {
                         panel.alpha = 0;
                         Player.instance.gameObject.SetActive(true);
-                        GameObject.FindGameObjectWithTag("LevelCamera").SetActive(false);
+                        levelCamera.SetActive(false);
                         LeanTween.alphaCanvas(fader, 0, 2);
                         crosshair.SetActive(true);
                     });
@@ -161,4 +178,27 @@ public class LevelInfo : MonoBehaviour
     {
         LeanTween.alphaCanvas(goalPortal, 1, 1);
     }
+
+
+    public void LoadNextLevel()
+    {
+        LeanTween.delayedCall(2.1f, () =>
+        {
+            Player.instance.gameObject.SetActive(false);
+            levelCamera.SetActive(true);
+        });
+        videoPlayer.time = 0;
+        maskPlayer.time = 0;
+        videoPlayer.Play();
+        maskPlayer.Play();
+        display.SetActive(true);
+        AsyncOperation o = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Single);
+        o.allowSceneActivation = false;
+        LeanTween.delayedCall(3, () => {
+            videoPlayer.Stop();
+            maskPlayer.Stop();
+            o.allowSceneActivation = true;
+        });
+    }
+
 }
