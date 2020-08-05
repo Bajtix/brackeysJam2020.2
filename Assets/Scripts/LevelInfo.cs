@@ -33,9 +33,16 @@ public class LevelInfo : MonoBehaviour
     public float playerHealth;
     public float playerEnergy;
 
-    public float enemyCount;
+    public int enemyCount;
     public float timeToComplete;
+    public int nextLevel;
 
+    [System.NonSerialized]
+    public bool reachedPortal = false;
+    [System.NonSerialized]
+    public int killedEnemies = 0;
+    [System.NonSerialized]
+    public float timePassed = 0f;
 
     public CanvasGroup panel, goalKills, goalTime, goalPortal;
     public TextMeshProUGUI timelimit, killlimit, levelname, leveldescription, health, energy;
@@ -47,9 +54,11 @@ public class LevelInfo : MonoBehaviour
 
     public GameObject display;
 
-    public int nextLevel;
+    
 
     private GameObject levelCamera;
+
+    private bool timerRunning = false;
 
     private void Start()
     {
@@ -70,19 +79,19 @@ public class LevelInfo : MonoBehaviour
         leveldescription.text = "";
         timelimit.text = "Time goal: " + timeToComplete + "s";
         killlimit.text = "Kill goal: " + enemyCount + " enemies";
-        LeanTween.delayedCall(5, () =>
+        LeanTween.delayedCall(8, () =>
         {
             display.SetActive(false);
             LeanTween.alphaCanvas(panel, 1, 2).setOnComplete(() =>
             {
                 StartCoroutine("WriteDescription");
-                LeanTween.delayedCall(levelDescription.Length * typeWriterSpeed + 0.3f, () =>
+                LeanTween.delayedCall(levelDescription.Length * typeWriterSpeed + 1.3f, () =>
                 {
                     StartCoroutine("CountEnergy");
-                    LeanTween.delayedCall(1f / playerEnergy + 0.2f, () =>
+                    LeanTween.delayedCall(2f, () =>
                     {
                         StartCoroutine("CountHealth");
-                        LeanTween.delayedCall(1f / playerHealth + 0.2f, () =>
+                        LeanTween.delayedCall(2f, () =>
                         {
                             Goals();
                         });
@@ -145,7 +154,7 @@ public class LevelInfo : MonoBehaviour
             LeanTween.delayedCall(1, () =>
             {
                 if (time)
-                    Time();
+                    Stopwatch();
 
                 LeanTween.delayedCall(3, () =>
                 {
@@ -156,6 +165,7 @@ public class LevelInfo : MonoBehaviour
                         levelCamera.SetActive(false);
                         LeanTween.alphaCanvas(fader, 0, 2);
                         crosshair.SetActive(true);
+                        timerRunning = true;
                     });
                 });
             });
@@ -169,7 +179,7 @@ public class LevelInfo : MonoBehaviour
         LeanTween.alphaCanvas(goalKills, 1, 1);
     }
 
-    private void Time()
+    private void Stopwatch()
     {
         LeanTween.alphaCanvas(goalTime, 1, 1);
     }
@@ -179,6 +189,32 @@ public class LevelInfo : MonoBehaviour
         LeanTween.alphaCanvas(goalPortal, 1, 1);
     }
 
+    private void Update()
+    {
+        if(timerRunning)
+        {
+            timePassed += Time.unscaledDeltaTime;
+            bool[] checks = new bool[3];
+            if (time)
+            {
+                checks[0] = timePassed <= timeToComplete;
+            }
+            else
+                checks[0] = true;
+            if (portal)
+            {
+                checks[1] = reachedPortal;
+            }
+            else
+                checks[1] = true;
+            if (eliminateEnemies)
+            {
+                checks[3] = killedEnemies >= enemyCount;
+            }
+            else
+                checks[3] = true;
+        }
+    }
 
     public void LoadNextLevel()
     {
