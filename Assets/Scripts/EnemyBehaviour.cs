@@ -32,6 +32,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private bool runToPlayer = true;
 
+    private bool diedBefore = false;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -117,11 +119,19 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void Die()
     {
+        if (!diedBefore)
+        {
+            LevelInfo.instance.killedEnemies += 1;
+        }
+
+            diedBefore = true;
         weapon.gameObject.SetActive(false);
         activationDelay = stunTime * 1.5f;
         animator.SetTrigger("Die");
         Instantiate(deathEffect, transform.position, Quaternion.identity);
         LeanTween.delayedCall(stunTime,()=>gameObject.SetActive(false));
+
+        
     }
 
 }

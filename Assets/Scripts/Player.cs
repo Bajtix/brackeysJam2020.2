@@ -108,8 +108,8 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRot, 0);
         cam.localRotation = Quaternion.Euler(xRot, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.G))
-            LevelInfo.instance.LoadNextLevel();
+        if (Input.GetKeyDown(KeyCode.R))
+            LevelInfo.instance.ReloadLevel();
 
 
 
