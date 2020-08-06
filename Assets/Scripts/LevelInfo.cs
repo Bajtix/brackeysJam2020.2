@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class LevelInfo : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class LevelInfo : MonoBehaviour
     private GameObject levelCamera;
 
     private bool timerRunning = false;
-
+    private bool startingSequence = false;
 
     
 
@@ -96,6 +97,7 @@ public class LevelInfo : MonoBehaviour
             display.SetActive(false);
             LeanTween.alphaCanvas(panel, 1, 2).setOnComplete(() =>
             {
+                startingSequence = true;
                 StartCoroutine("WriteDescription");
                 LeanTween.delayedCall(levelDescription.Length * typeWriterSpeed + 1.3f, () =>
                 {
@@ -170,16 +172,7 @@ public class LevelInfo : MonoBehaviour
 
                 LeanTween.delayedCall(3, () =>
                 {
-                    LeanTween.alphaCanvas(fader, 1, 2).setOnComplete(()=> 
-                    {
-                        panel.alpha = 0;
-                        Player.instance.gameObject.SetActive(true);
-                        levelCamera.SetActive(false);
-                        LeanTween.alphaCanvas(fader, 0, 2);
-                        crosshair.SetActive(true);
-                        goalInfo.SetActive(true);
-                        timerRunning = true;
-                    });
+                    EndStartSequence();
                 });
             });
         });
@@ -187,6 +180,22 @@ public class LevelInfo : MonoBehaviour
         
     }
 
+
+    private void EndStartSequence()
+    {
+        if (startingSequence) return;
+        startingSequence = false;
+        LeanTween.alphaCanvas(fader, 1, 2).setOnComplete(() =>
+        {
+            panel.alpha = 0;
+            Player.instance.gameObject.SetActive(true);
+            levelCamera.SetActive(false);
+            LeanTween.alphaCanvas(fader, 0, 2);
+            crosshair.SetActive(true);
+            goalInfo.SetActive(true);
+            timerRunning = true;
+        });
+    }
     private void Kills()
     {
         LeanTween.alphaCanvas(goalKills, 1, 1);
