@@ -58,13 +58,14 @@ public class LevelInfo : MonoBehaviour
     public CanvasGroup portalGoalCheck, killGoalCheck, timeGoalCheck;
     public TextMeshProUGUI portalGoalCheckText, killGoalCheckText, timeGoalCheckText;
     public GameObject levelFailed;
-
+    public CanvasGroup hint;
+    public TextMeshProUGUI hintText;
     private GameObject levelCamera;
 
     private bool timerRunning = false;
 
-    
 
+    
 
     private void Start()
     {
@@ -310,6 +311,21 @@ public class LevelInfo : MonoBehaviour
         levelFailed.SetActive(true);
         LeanTween.alphaCanvas(levelFailed.GetComponent<CanvasGroup>(),1,0.5f);
         Time.timeScale = 0.2f;
+        
+    }
+
+    public void Hint(string text)
+    {
+        hintText.text = text;
+        LeanTween.alphaCanvas(hint, 1, 0.2f).setOnComplete(()=>
+        {
+            Time.timeScale = 0.1f;
+            LeanTween.delayedCall(0.2f, () =>
+            {
+                Time.timeScale = 1;
+                LeanTween.alphaCanvas(hint, 0, 0.2f);
+            });
+        });
         
     }
 

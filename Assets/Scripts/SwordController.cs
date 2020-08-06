@@ -68,6 +68,16 @@ public class SwordController : MonoBehaviour
                 }
             }
         }
+        
+        if (Input.GetButtonDown("Use"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 4))
+            {
+                if (hit.collider.GetComponent<Interactable>() != null)
+                    hit.collider.GetComponent<Interactable>().E();
+            }
+        }
 
         if (drawn)
         {
@@ -108,8 +118,11 @@ public class SwordController : MonoBehaviour
             trail.SetActive(false);
             sword.position = swordIdlePosition.position;
             sword.rotation = swordIdlePosition.rotation;
-            Time.timeScale = 1;
+            
         }
+
+        if(Input.GetButtonUp("Fire1"))
+            Time.timeScale = 1;
 
         swordSlicer.slicing = drawn;
     }
