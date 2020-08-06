@@ -75,7 +75,7 @@ public class SwordSlicer : MonoBehaviour
             entity.Lock(timelocked);
             MeshCollider col = obj.AddComponent<MeshCollider>();
             col.convex = true;
-            //obj.tag = "Sliceable";
+            obj.tag = "Sliceable";
             rb.AddExplosionForce(100, transform.position, 20);
         }
         return true;

@@ -167,4 +167,9 @@ public class Player : MonoBehaviour
         LevelInfo.instance.Death();
     }
 
+    public void StopRewind()
+    {
+        TimeController.instance.playbackMode = false;
+    }
+
 }

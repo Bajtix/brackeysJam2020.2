@@ -14,25 +14,30 @@ public class TriggerZone : MonoBehaviour
     private bool used = false;
     private void OnTriggerEnter(Collider other)
     {
-        if(!used)
+        if (!used)
             if (other.CompareTag("Player"))
+            {
                 onEnter.Invoke();
-        used = oneTime;
+                used = oneTime;
+            }
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (!used)
-            if (other.CompareTag("Player"))
-            onStay.Invoke();
-        used = oneTime;
+            if (other.CompareTag("Player")) { 
+                onStay.Invoke();
+                used = oneTime;
+            }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!used)
             if (other.CompareTag("Player"))
-            onExit.Invoke();
-        used = oneTime;
+            {
+                onExit.Invoke();
+                used = oneTime;
+            }
     }
 }
