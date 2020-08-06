@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private Vector3 gravity;
     private CharacterController controller;
 
-    
+
     [ColorUsage(true, true)]
     public Color fullColor;
 
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     private Vector2 camMotion;
     private Vector2 camLast;
 
-
+    public bool dead = false;
 
     #region Singleton
     public static Player instance;
@@ -74,11 +74,21 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        HealthVisualiser.SetFloat("Saturation", HP / maxHP);
+        EnergyVisualiser.SetColor("_EmissionColor", Color.Lerp(emptyColor, fullColor, energy / playerEnergy));
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            LevelInfo.instance.ReloadLevel();
+        }
+
+        if (dead)
+        {
+            return;
+        }
         camMotion = new Vector2(xRot, yRot) - camLast;
         camLast = new Vector2(xRot, yRot);
 
-        HealthVisualiser.SetFloat("Saturation", HP / maxHP);
-        EnergyVisualiser.SetColor("_EmissionColor", Color.Lerp(emptyColor, fullColor, energy / playerEnergy));
+
 
         if (TimeController.instance.playbackMode)
         {
@@ -108,13 +118,10 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, yRot, 0);
         cam.localRotation = Quaternion.Euler(xRot, 0, 0);
 
-        if (Input.GetKeyDown(KeyCode.R))
-            LevelInfo.instance.ReloadLevel();
-
-
-
-
-
+        if (HP < 0)
+        {
+            Die();
+        }
 
         float my = movement.y;
         movement = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed;
@@ -142,6 +149,20 @@ public class Player : MonoBehaviour
         dyRot -= camMotion.y * 70;
         dxRot -= camMotion.x * 70;
 
+    }
+
+    public void Damage(float amount)
+    {
+        HP -= amount;
+    }
+
+    public void Die()
+    {
+        if (dead) return;
+        HP = 0;
+        dead = true;
+        Time.timeScale = 0.2f;
+        LevelInfo.instance.Death();
     }
 
 }

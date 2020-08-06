@@ -36,6 +36,9 @@ public class SwordController : MonoBehaviour
     }
     private void Update()
     {
+        if (Player.instance.dead)
+            return;
+
         motion = viewModel.transform.position - lastPos;
         lastPos = viewModel.transform.position;
 
