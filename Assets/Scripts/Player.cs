@@ -65,6 +65,8 @@ public class Player : MonoBehaviour
         HP = LevelInfo.instance.playerHealth;
         maxHP = LevelInfo.instance.playerHealth;
 
+        dyRot = transform.rotation.eulerAngles.y;
+        yRot = transform.rotation.eulerAngles.y;
 
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
