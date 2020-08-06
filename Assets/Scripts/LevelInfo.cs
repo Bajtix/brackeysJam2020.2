@@ -183,14 +183,14 @@ public class LevelInfo : MonoBehaviour
 
     private void EndStartSequence()
     {
-        if (startingSequence) return;
+        if (!startingSequence) return;
         startingSequence = false;
-        LeanTween.alphaCanvas(fader, 1, 2).setOnComplete(() =>
+        LeanTween.alphaCanvas(fader, 1, 1).setOnComplete(() =>
         {
             panel.alpha = 0;
             Player.instance.gameObject.SetActive(true);
             levelCamera.SetActive(false);
-            LeanTween.alphaCanvas(fader, 0, 2);
+            LeanTween.alphaCanvas(fader, 0, 1);
             crosshair.SetActive(true);
             goalInfo.SetActive(true);
             timerRunning = true;
@@ -213,6 +213,9 @@ public class LevelInfo : MonoBehaviour
 
     private void Update()
     {
+        if (startingSequence && Input.GetButton("Jump"))
+            EndStartSequence();
+
         if(timerRunning)
         {
             timePassed += Time.unscaledDeltaTime;

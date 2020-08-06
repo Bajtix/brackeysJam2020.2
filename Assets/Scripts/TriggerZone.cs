@@ -24,10 +24,9 @@ public class TriggerZone : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!used)
+
             if (other.CompareTag("Player")) { 
                 onStay.Invoke();
-                used = oneTime;
             }
     }
 
