@@ -19,12 +19,16 @@ public class SwordSlicer : MonoBehaviour
 
     private void Update()
     {
+        if (Player.instance.dead)
+            return;
         motion = lastPos - transform.position;
         lastPos = transform.position;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (Player.instance.dead)
+            return;
         if (!slicing)
             return;
         Material mat = /*collision.gameObject.GetComponent<MeshRenderer>().material*/ swordMat;

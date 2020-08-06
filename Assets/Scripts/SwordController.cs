@@ -36,6 +36,9 @@ public class SwordController : MonoBehaviour
     }
     private void Update()
     {
+        if (Player.instance.dead)
+            return;
+
         motion = viewModel.transform.position - lastPos;
         lastPos = viewModel.transform.position;
 
@@ -63,6 +66,16 @@ public class SwordController : MonoBehaviour
                 {
                     hit.collider.GetComponent<TimeEntity>().Lock(!hit.collider.GetComponent<TimeEntity>().locked);
                 }
+            }
+        }
+        
+        if (Input.GetButtonDown("Use"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 4))
+            {
+                if (hit.collider.GetComponent<Interactable>() != null)
+                    hit.collider.GetComponent<Interactable>().E();
             }
         }
 
@@ -105,8 +118,11 @@ public class SwordController : MonoBehaviour
             trail.SetActive(false);
             sword.position = swordIdlePosition.position;
             sword.rotation = swordIdlePosition.rotation;
-            Time.timeScale = 1;
+            
         }
+
+        if(Input.GetButtonUp("Fire1"))
+            Time.timeScale = 1;
 
         swordSlicer.slicing = drawn;
     }
