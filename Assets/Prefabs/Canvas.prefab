@@ -886,10 +886,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2440,17 +2440,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fader: {fileID: 7816240506772397882}
-  levelName: Old Shafts
+  levelName: Ancient Cave
   levelDescription: 'Old, buried cave with the remains of the mining shafts,created
     here ages ago. '
   eliminateEnemies: 0
-  time: 0
+  time: 1
   portal: 1
-  playerHealth: 100
+  playerHealth: 50
   playerEnergy: 10
   enemyCount: 0
-  timeToComplete: 10
-  nextLevel: 1
+  timeToComplete: 70
+  nextLevel: 0
   panel: {fileID: 7816240508041400170}
   goalKills: {fileID: 7816240507773392078}
   goalTime: {fileID: 7816240507620269906}
