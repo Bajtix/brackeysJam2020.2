@@ -36,13 +36,16 @@ public class TimeController : MonoBehaviour
                 if(e != null)
                     e.Play(frame);
             }
-            if(frame > 3)
+            if(frame > 8)
             frame-=2;
 
             Player.instance.energy -= Time.unscaledDeltaTime / 2;
         }
         else
         {
+            if (!Player.instance.gameObject.activeSelf) return;
+            //fix for player disable issue
+
             foreach (TimeEntity e in timeEntities)
             {
                 if (e != null)
