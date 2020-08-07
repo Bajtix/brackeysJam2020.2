@@ -272,6 +272,8 @@ public class LevelInfo : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        GlobalGameSettings.lastLevel = nextLevel;
+        GlobalGameSettings.SaveProgress();
         Time.timeScale = 1;
         LeanTween.delayedCall(2.1f, () =>
         {
@@ -339,6 +341,11 @@ public class LevelInfo : MonoBehaviour
             });
         });
         
+    }
+
+    private void OnApplicationQuit()
+    {
+        GlobalGameSettings.SaveProgress();
     }
 
 
