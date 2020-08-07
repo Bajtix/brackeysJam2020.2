@@ -68,7 +68,7 @@ public class LevelInfo : MonoBehaviour
     private bool startingSequence = false;
 
     public UnityEvent onLoad;
-
+    private bool reloadClicked = false;
     private void Start()
     {
         levelFailed.SetActive(false);
@@ -271,9 +271,16 @@ public class LevelInfo : MonoBehaviour
             }
         }
     }
+    public void Menu()
+    {
+        //no time for fancy stuff
+        SceneManager.LoadScene(0);
+    }
+
 
     public void LoadNextLevel()
     {
+        reloadClicked = true;
         GlobalGameSettings.lastLevel = nextLevel;
         GlobalGameSettings.SaveProgress();
         Time.timeScale = 1;
@@ -298,6 +305,8 @@ public class LevelInfo : MonoBehaviour
 
     public void ReloadLevel()
     {
+        if (reloadClicked) return;
+        reloadClicked = true;
         Time.timeScale = 1;
         Debug.Log("Reloading level");
         LeanTween.delayedCall(2.1f, () =>

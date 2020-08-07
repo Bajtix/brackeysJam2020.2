@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
 
     public bool dead = false;
 
+    
+
     #region Singleton
     public static Player instance;
 
@@ -81,6 +83,10 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             LevelInfo.instance.ReloadLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LevelInfo.instance.Menu();
         }
 
         if (dead)
