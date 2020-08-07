@@ -4861,7 +4861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7816240507020597695, guid: 1effdb0927af713459fa0671b494027d, type: 3}
       propertyPath: nextLevel
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7816240507020597695, guid: 1effdb0927af713459fa0671b494027d, type: 3}
       propertyPath: playerHealth
