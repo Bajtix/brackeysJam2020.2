@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animation))]
+[RequireComponent(typeof(Animator))]
 public class SimpleAnimator : MonoBehaviour
 {
-    public void Play()
+    public void SetBoolOn(string name)
     {
-        GetComponent<Animation>().Play();
+        GetComponent<Animator>().SetBool(name, true);
+    }
+    public void SetBoolOff(string name)
+    {
+        GetComponent<Animator>().SetBool(name, false);
     }
 }
