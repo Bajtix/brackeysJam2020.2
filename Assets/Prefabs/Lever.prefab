@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3040703060890520053}
   - component: {fileID: 4463958878843835762}
   - component: {fileID: 4463958878843835727}
-  - component: {fileID: 4463958878843835725}
+  - component: {fileID: 5329603241136914674}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -200,7 +200,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4463958878843835725
+--- !u!114 &5329603241136914674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3544969673852135456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4753ba90b53f68a45b7c7ecbe10bbb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 889aa5cc633960c478bcf835944f3e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onSlice:
@@ -217,19 +217,14 @@ MonoBehaviour:
       m_Calls: []
   onE:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4463958878843835727}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Flip
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  toggle: 0
+  onEnable:
+    m_PersistentCalls:
+      m_Calls: []
+  onDisable:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4463958880119498886
 GameObject:
   m_ObjectHideFlags: 0

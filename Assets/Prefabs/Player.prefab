@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 8201327668337917160}
   - component: {fileID: 8201327668337917161}
   - component: {fileID: 8201327668337917164}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -430,6 +430,7 @@ MonoBehaviour:
   HealthVisualiser: {fileID: 2100000, guid: 6769c48893a59cc4da9125204e1d685a, type: 2}
   playerEnergy: 10
   energy: 10
+  dead: 0
 --- !u!143 &8201327668337917161
 CharacterController:
   m_ObjectHideFlags: 0
@@ -482,7 +483,7 @@ GameObject:
   - component: {fileID: 8201327668454690443}
   - component: {fileID: 8201327668454690447}
   - component: {fileID: 8201327668454690444}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Slicer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

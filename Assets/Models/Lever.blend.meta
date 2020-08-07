@@ -41,8 +41,8 @@ ModelImporter:
       name: Flip
       takeName: Scene
       internalID: 0
-      firstFrame: 1
-      lastFrame: 30
+      firstFrame: 35
+      lastFrame: 53
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
