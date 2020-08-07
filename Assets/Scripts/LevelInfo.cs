@@ -7,6 +7,7 @@ using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine.Events;
 
 public class LevelInfo : MonoBehaviour
 {
@@ -66,7 +67,7 @@ public class LevelInfo : MonoBehaviour
     private bool timerRunning = false;
     private bool startingSequence = false;
 
-    
+    public UnityEvent onLoad;
 
     private void Start()
     {
@@ -194,6 +195,7 @@ public class LevelInfo : MonoBehaviour
             crosshair.SetActive(true);
             goalInfo.SetActive(true);
             timerRunning = true;
+            onLoad.Invoke();
         });
     }
     private void Kills()
