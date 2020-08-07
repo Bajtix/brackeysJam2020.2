@@ -8,6 +8,7 @@ TagManager:
   - SliceReactor
   - SliceDeflector
   - LevelCamera
+  - Ball
   layers:
   - Default
   - TransparentFX

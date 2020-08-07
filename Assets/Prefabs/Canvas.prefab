@@ -1994,7 +1994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7816240506772397883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2476,6 +2476,9 @@ MonoBehaviour:
   levelFailed: {fileID: 7630775755043591143}
   hint: {fileID: 8728401224731749168}
   hintText: {fileID: 1972062261940976089}
+  onLoad:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7816240507256962198
 GameObject:
   m_ObjectHideFlags: 0

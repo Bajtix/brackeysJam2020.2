@@ -225,4 +225,9 @@ public class TimeEntity : MonoBehaviour
     {
         Destroy(statusObject);
     }
+
+    public void SetLock(bool l)
+    {
+        canBeLocked = l;
+    }
 }
