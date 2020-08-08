@@ -62,6 +62,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        TimeController.instance.frame = 0;
+
         playerEnergy = LevelInfo.instance.playerEnergy;
         energy = LevelInfo.instance.playerEnergy;
         HP = LevelInfo.instance.playerHealth;
