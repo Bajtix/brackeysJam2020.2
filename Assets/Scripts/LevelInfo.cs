@@ -91,7 +91,7 @@ public class LevelInfo : MonoBehaviour
         leveldescription.text = "";
         timelimit.text = "Time goal: " + timeToComplete + "s";
         killlimit.text = "Kill goal: " + enemyCount + " enemies";
-        LeanTween.delayedCall(6.5f, () =>
+        LeanTween.delayedCall(7.5f, () =>
         {
             videoPlayer.Stop();
             maskPlayer.Stop();

@@ -8,7 +8,7 @@ public class Lever : Interactable
     public UnityEvent onDisable;
     public bool isOn = false;
 
-
+    
     private TimeEntity te;
 
     private void Start()
@@ -37,12 +37,16 @@ public class Lever : Interactable
         if (toggle)
         {
             isOn = !isOn;
+            GetComponent<AudioSource>().Play();
         }
         else
+        {
             if (!isOn)
             {
                 isOn = true;
+                GetComponent<AudioSource>().Play();
             }
+        }
 
         GetComponent<Animator>().SetBool("Flipped", isOn);
         if (isOn)
