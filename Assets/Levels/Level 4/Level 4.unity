@@ -8480,6 +8480,10 @@ PrefabInstance:
       propertyPath: onLoad.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7816240507020597695, guid: 1effdb0927af713459fa0671b494027d, type: 3}
+      propertyPath: nextLevel
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7816240507558266775, guid: 1effdb0927af713459fa0671b494027d, type: 3}
       propertyPath: m_textInfo.characterCount
       value: 0

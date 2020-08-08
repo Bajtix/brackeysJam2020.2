@@ -3405,6 +3405,14 @@ PrefabInstance:
       propertyPath: nextLevel
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7816240507020597695, guid: 1effdb0927af713459fa0671b494027d, type: 3}
+      propertyPath: levelName
+      value: Underground Passage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816240507020597695, guid: 1effdb0927af713459fa0671b494027d, type: 3}
+      propertyPath: levelDescription
+      value: Once it was used by the miners to transport minerals to the castle
+      objectReference: {fileID: 0}
     - target: {fileID: 7816240507558266775, guid: 1effdb0927af713459fa0671b494027d, type: 3}
       propertyPath: m_textInfo.characterCount
       value: 0

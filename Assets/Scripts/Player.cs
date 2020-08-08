@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
     public bool dead = false;
 
-    
+    public AudioSource stepSource;
 
     #region Singleton
     public static Player instance;
@@ -137,9 +137,23 @@ public class Player : MonoBehaviour
         movement = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")) * speed;
         movement.y = my;
 
+        if(movement.x + movement.z != 0)
+        {
+            if(!stepSource.loop)
+            {
+                stepSource.loop = true;
+                stepSource.Play();
+            }
+        }
+        else
+        {
+            stepSource.loop = false;
+            stepSource.Stop();
+        }
 
         if (controller.isGrounded)
         {
+            
             movement.y = 0;
             if (Input.GetButton("Jump"))
             {
