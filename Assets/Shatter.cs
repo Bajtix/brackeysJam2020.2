@@ -20,5 +20,10 @@ public class Shatter : Interactable
     {
         shattered.SetActive(true);
         normal.SetActive(false);
+
+        if(GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().Play();
+        }
     }
 }
