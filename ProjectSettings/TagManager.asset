@@ -9,6 +9,7 @@ TagManager:
   - SliceDeflector
   - LevelCamera
   - Ball
+  - NoPlayerCollision
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - PostFX
   - Player
-  - 
+  - NoPlayerCollision
   - 
   - 
   - 
