@@ -32,6 +32,8 @@ public class Lever : Interactable
                 te.metadata = isOn.ToString();
             }
         }
+
+        GetComponent<Animator>().SetBool("Flipped", isOn);
     }
     public override void E()
     {
@@ -63,7 +65,7 @@ public class Lever : Interactable
             }
         }
 
-        GetComponent<Animator>().SetBool("Flipped", isOn);
+        
         
     }
 }
