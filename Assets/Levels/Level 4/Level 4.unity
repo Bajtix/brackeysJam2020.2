@@ -4624,7 +4624,7 @@ MonoBehaviour:
   controlRigidbody: 0
   metadata: 
   locked: 0
-  canBeLocked: 1
+  canBeLocked: 0
   mats: []
 --- !u!1001 &811641018
 PrefabInstance:
@@ -9452,7 +9452,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19394
+  m_Name: pb_Mesh62812
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -15,7 +15,8 @@ public class Lever : Interactable
     {
         te = GetComponent<TimeEntity>();
     }
-    public override void E()
+
+    private void Update()
     {
         if (TimeController.instance.playbackMode)
         {
@@ -31,6 +32,10 @@ public class Lever : Interactable
                 te.metadata = isOn.ToString();
             }
         }
+    }
+    public override void E()
+    {
+        
 
         Debug.Log("E");
 
@@ -38,6 +43,15 @@ public class Lever : Interactable
         {
             isOn = !isOn;
             GetComponent<AudioSource>().Play();
+            if (isOn)
+            {
+                onEnable.Invoke();
+            }
+
+            if (!isOn)
+            {
+                onDisable.Invoke();
+            }
         }
         else
         {
@@ -45,18 +59,11 @@ public class Lever : Interactable
             {
                 isOn = true;
                 GetComponent<AudioSource>().Play();
+                onEnable.Invoke();
             }
         }
 
         GetComponent<Animator>().SetBool("Flipped", isOn);
-        if (isOn)
-        {
-            onEnable.Invoke();
-        }
-
-        if (!isOn)
-        {
-            onDisable.Invoke();
-        }
+        
     }
 }
