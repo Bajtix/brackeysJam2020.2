@@ -67,13 +67,19 @@ public class RailBuilder : MonoBehaviour
             j++;
         }
     }
+
+
     [CustomEditor(typeof(RailBuilder))]
     public class RailEditor : Editor
     {
         
         void CreateRail()
         {
+            
             RailBuilder self = (RailBuilder)target;
+
+            Quaternion srot = self.transform.rotation;
+            self.transform.rotation = Quaternion.identity;
             if (self.railPieces != null)
             {
                 foreach (RailPiece r in self.railPieces)
@@ -88,7 +94,7 @@ public class RailBuilder : MonoBehaviour
                 GameObject piece = Instantiate(self.prefab, self.transform.position - Vector3.forward * i * 5, Quaternion.identity, self.transform);
                 self.railPieces.Add(new RailPiece(piece.transform));
             }
-
+            self.transform.rotation = srot;
             self.Refresh();
         }
         public override void OnInspectorGUI()
@@ -104,7 +110,8 @@ public class RailBuilder : MonoBehaviour
                 int index = 0;
                 foreach(RailPiece r in self.railPieces)
                 {
-                    r.bend = backup[index].bend;
+                    if (backup != null && index < backup.Count)
+                        r.bend = backup[index].bend;
                     index++;
                 }
             }
@@ -117,9 +124,8 @@ public class RailBuilder : MonoBehaviour
                 int index = 0;
                 foreach (RailPiece r in self.railPieces)
                 {
-                    if(index < backup.Count)
-                    r.bend = backup[index].bend;
-                        
+                    if(backup != null && index < backup.Count)
+                        r.bend = backup[index].bend;                        
                     index++;
                 }
             }
