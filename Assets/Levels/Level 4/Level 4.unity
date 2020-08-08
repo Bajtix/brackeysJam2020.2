@@ -9830,7 +9830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tug: 0
   ctug: 0
-  bound: 870
+  bound: 15
   cart1: {fileID: 668893407}
   cart2: {fileID: 1247721280}
   tugActive: 0

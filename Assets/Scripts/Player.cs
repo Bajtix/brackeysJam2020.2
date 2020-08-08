@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         {
             LevelInfo.instance.ReloadLevel();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             LevelInfo.instance.Menu();
         }

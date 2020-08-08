@@ -15,14 +15,14 @@ public class MinecartLevel : MonoBehaviour
         if (!tugActive) return;
         if (ctug < bound && tug > 0)
         {
-            ctug += tug;
+            ctug += tug * Time.deltaTime;
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
         }
 
         if (ctug > 0 && tug < 0)
         {
-            ctug += tug;
+            ctug += tug * Time.deltaTime;
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
         }      
