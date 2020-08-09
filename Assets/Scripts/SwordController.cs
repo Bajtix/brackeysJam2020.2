@@ -50,7 +50,29 @@ public class SwordController : MonoBehaviour
         drawn = Input.GetButton("Fire1");
         playbackMode = Input.GetButton("Rewind");
 
-        if(Input.GetButtonDown("Fire2"))
+
+        RaycastHit h;
+        if (Physics.Raycast(transform.position, transform.forward, out h))
+        {
+            if (h.collider.GetComponent<TELinker>() != null)
+            {
+                LevelInfo.instance.lockState = h.collider.GetComponent<TELinker>().link.canBeLocked;
+            }
+            else if (h.collider.GetComponent<TimeEntity>() != null)
+            {
+                LevelInfo.instance.lockState = h.collider.GetComponent<TimeEntity>().canBeLocked;
+            }
+            else
+            {
+                LevelInfo.instance.lockState = false;
+            }
+        }
+        else
+        {
+            LevelInfo.instance.lockState = false;
+        }//todo: merge with Fire2 below
+
+        if (Input.GetButtonDown("Fire2"))
         {
             drawn = false;
             playbackMode = false;

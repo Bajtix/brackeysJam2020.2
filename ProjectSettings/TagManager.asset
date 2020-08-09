@@ -5,12 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sliceable
-  - SliceReactor
   - SliceDeflector
   - LevelCamera
   - Ball
   - NoPlayerCollision
   - Ball 2
+  - Small Detail
+  - Interactable
+  - LightSource
   layers:
   - Default
   - TransparentFX
