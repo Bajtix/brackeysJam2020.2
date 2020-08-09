@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,13 +29,13 @@ public class RailBuilder : MonoBehaviour
     }
 
 
-    private List<RailPiece> railPieces;
+    public List<RailPiece> railPieces;
 
     public int segmentCount;
     public GameObject prefab;
 
 
-
+    public List<bool> editors;
 
     [ExecuteInEditMode]
     private void Refresh()
@@ -47,18 +48,19 @@ public class RailBuilder : MonoBehaviour
         int j = 0;
         foreach (RailPiece r in railPieces)
         {
+
             for (int i = 0; i < r.bones.Count; i++)
             {
                 if (i > 1)
                 {
-                    r.bones[i].localRotation = Quaternion.Lerp(r.bones[i - 1].localRotation, Quaternion.Euler(r.bend), 0.5f);
+                    r.bones[i].localRotation = Quaternion.Lerp(r.bones[i - 1].localRotation, Quaternion.Euler(r.bend / 4), 0.5f);
                 }
                 else
                 {
                     if (j > 0)
                     {
-                        RailPiece k = railPieces[j -1];
-                        r.bones[i].rotation = Quaternion.Lerp(k.bones[k.bones.Count - 2].rotation, Quaternion.Euler(r.bend), 0f);
+                        RailPiece k = railPieces[j - 1];
+                        r.bones[i].rotation = Quaternion.Lerp(k.bones[k.bones.Count - 2].rotation, Quaternion.Euler(r.bend / 4), 0f);
                         r.bones[i].position = k.bones[k.bones.Count - 2].position;
                     }
                 }
@@ -66,28 +68,41 @@ public class RailBuilder : MonoBehaviour
             }
             j++;
         }
+
+
     }
 
 
     [CustomEditor(typeof(RailBuilder))]
     public class RailEditor : Editor
     {
-        
-        void CreateRail()
-        {
-            
-            RailBuilder self = (RailBuilder)target;
+        private List<bool> foldouts;
+        private List<bool> edits;
 
-            Quaternion srot = self.transform.rotation;
-            self.transform.rotation = Quaternion.identity;
+        private void DestroyRail()
+        {
+            RailBuilder self = (RailBuilder)target;
             if (self.railPieces != null)
             {
                 foreach (RailPiece r in self.railPieces)
                 {
-                    DestroyImmediate(r.self.gameObject);
+                    if (r.self != null)
+                    {
+                        DestroyImmediate(r.self.gameObject);
+                    }
                 }
-
+                self.railPieces.Clear();
             }
+        }
+
+        private void CreateRail()
+        {
+
+            RailBuilder self = (RailBuilder)target;
+
+            Quaternion srot = self.transform.rotation;
+            self.transform.rotation = Quaternion.identity;
+            DestroyRail();
             self.railPieces = new List<RailPiece>();
             for (int i = 0; i < self.segmentCount; i++)
             {
@@ -99,52 +114,146 @@ public class RailBuilder : MonoBehaviour
         }
         public override void OnInspectorGUI()
         {
+
             RailBuilder self = (RailBuilder)target;
+            self.editors = edits;
+            if (self.railPieces == null)
+            {
+                self.railPieces = new List<RailPiece>();
+            }
+            if(foldouts == null)
+            {
+                foldouts = new List<bool>();
+                foreach (RailPiece r in self.railPieces)
+                    foldouts.Add(false);
+            }
             self.prefab = (GameObject)EditorGUILayout.ObjectField("Rail Prefab", self.prefab, typeof(GameObject), false);
             EditorGUILayout.BeginHorizontal();
-            if(GUILayout.Button("-"))
+            if (GUILayout.Button("-"))
             {
-                List<RailPiece> backup = self.railPieces;
+                foldouts = new List<bool>();
+                edits = new List<bool>();
+
+                RailPiece[] backup = new RailPiece[self.railPieces.Count];
+                self.railPieces.CopyTo(backup);
+
                 self.segmentCount--;
                 CreateRail();
                 int index = 0;
-                foreach(RailPiece r in self.railPieces)
+                foreach (RailPiece r in self.railPieces)
                 {
-                    if (backup != null && index < backup.Count)
+                    foldouts.Add(false);
+                    edits.Add(false);
+                    if (backup != null && index < backup.Length)
+                    {
                         r.bend = backup[index].bend;
+                    }
+
                     index++;
                 }
             }
             GUILayout.Label(self.segmentCount.ToString());
             if (GUILayout.Button("+"))
             {
-                List<RailPiece> backup = self.railPieces;
+                foldouts = new List<bool>();
+                edits = new List<bool>();
+
+                RailPiece[] backup = new RailPiece[self.railPieces.Count];
+                self.railPieces.CopyTo(backup);
+
                 self.segmentCount++;
                 CreateRail();
                 int index = 0;
                 foreach (RailPiece r in self.railPieces)
                 {
-                    if(backup != null && index < backup.Count)
-                        r.bend = backup[index].bend;                        
+                    foldouts.Add(false);
+                    edits.Add(false);
+                    if (backup != null && index < backup.Length)
+                    {
+                        r.bend = backup[index].bend;
+                    }
+
                     index++;
                 }
             }
             EditorGUILayout.EndHorizontal();
             //base.OnInspectorGUI();
-            if (GUILayout.Button("Create rail"))
+            if (GUILayout.Button("Destroy rail"))
             {
-                CreateRail();
+                DestroyRail();
+                self.segmentCount = 0;
             }
+            ((RailBuilder)this.target).Refresh();
             if (self.railPieces != null)
             {
+                int j = 0;
                 foreach (RailPiece r in self.railPieces)
                 {
-                    GUILayout.Label("Rail Piece");
-                    r.bend = EditorGUILayout.Vector3Field("Bend", r.bend);
+                    foldouts[j] = EditorGUILayout.Foldout(foldouts[j], "Rail Piece " + j);
+                    if (foldouts[j])
+                    {
+                        r.bend = EditorGUILayout.Vector3Field("Rail Bend", r.bend);
+                        /*if (GUILayout.Button(edits[j] ? "Finish" : "Edit"))
+                        {
+                            if (!edits[j])
+                            {
+                                for (int i = 0; i < edits.Count; i++)
+                                {
+                                    edits[i] = false;
+                                }
+
+                                edits[j] = true;
+
+                            }
+                            else
+                            {
+                                edits[j] = false;
+                            }
+
+                        }*/
+                        if(GUILayout.Button("Create Junction"))
+                        {
+                            GameObject n = new GameObject("Junction");
+                            n.transform.parent = r.bones[r.bones.Count-1];
+                            n.transform.localPosition = Vector3.zero;
+                            n.transform.rotation = r.bones[r.bones.Count - 1].rotation * Quaternion.Euler(90,0,0);
+                            n.AddComponent<RailBuilder>();
+                            n.GetComponent<RailBuilder>().prefab = self.prefab;
+                            Selection.activeGameObject = n;
+                        }
+
+                    }
+                    j++;
                 }
             }
             ((RailBuilder)this.target).Refresh();
-            
+
         }
+
+        private void OnSceneGUI()
+        {
+            RailBuilder self = (RailBuilder)target;
+            if (self.railPieces == null)
+            {
+                return;
+            }
+
+            int j = 0;
+            foreach (RailPiece r in self.railPieces)
+            {
+                if (r.bones[0] != null)
+                {
+
+                    GUIStyle style = new GUIStyle();
+
+                    style.fontSize = 25;
+                    Handles.Label(r.bones[0].position, j.ToString(),style);
+
+                }
+                j++;
+            }
+        }
+
+
     }
 }
