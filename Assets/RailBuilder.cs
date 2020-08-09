@@ -211,7 +211,7 @@ public class RailBuilder : MonoBehaviour
                             }
 
                         }*/
-                        if(GUILayout.Button("Create Junction"))
+                        /*if(GUILayout.Button("Create Junction"))
                         {
                             GameObject n = new GameObject("Junction");
                             n.transform.parent = r.bones[r.bones.Count-1];
@@ -220,7 +220,7 @@ public class RailBuilder : MonoBehaviour
                             n.AddComponent<RailBuilder>();
                             n.GetComponent<RailBuilder>().prefab = self.prefab;
                             Selection.activeGameObject = n;
-                        }
+                        }*/
 
                     }
                     j++;
