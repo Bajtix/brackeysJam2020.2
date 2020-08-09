@@ -22,12 +22,12 @@ public class ObjectSorter : EditorWindow
 
     private void OnGUI()
     {
-        logicsStuff = (Transform)EditorGUILayout.ObjectField("Logic",logicsStuff, typeof(Transform),false);
+        logicsStuff = (Transform)EditorGUILayout.ObjectField("Logic",logicsStuff, typeof(Transform),true);
         //shatterableStuff = (Transform)EditorGUILayout.ObjectField("Logic",shatterableStuff, typeof(Transform),false);
-        decorativeStuff = (Transform)EditorGUILayout.ObjectField("Logic",decorativeStuff, typeof(Transform),false);
+        decorativeStuff = (Transform)EditorGUILayout.ObjectField("Decorative",decorativeStuff, typeof(Transform), true);
         //otherStuff = (Transform)EditorGUILayout.ObjectField("Logic",otherStuff, typeof(Transform),false);
         //utilityStuff = (Transform)EditorGUILayout.ObjectField("Logic",utilityStuff, typeof(Transform),false);
-        lightStuff = (Transform)EditorGUILayout.ObjectField("Logic",lightStuff, typeof(Transform),false);
+        lightStuff = (Transform)EditorGUILayout.ObjectField("Lights",lightStuff, typeof(Transform), true);
 
         if (GUILayout.Button("Create Categories"))
         {
@@ -36,7 +36,7 @@ public class ObjectSorter : EditorWindow
            /* if (shatterableStuff == null)
                 shatterableStuff = FindOrCreateObject("Shatterable");*/
             if (decorativeStuff == null)
-                logicsStuff = FindOrCreateObject("Decorative");
+                decorativeStuff = FindOrCreateObject("Decorative");
             /*if (otherStuff == null)
                 otherStuff = FindOrCreateObject("Other");*/
             /*if (utilityStuff == null)
@@ -48,6 +48,12 @@ public class ObjectSorter : EditorWindow
         {
             GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
             foreach(GameObject g in interactables)
+            {
+                if (g.transform.parent == null)
+                    g.transform.SetParent(logicsStuff);
+            }
+            interactables = GameObject.FindGameObjectsWithTag("Sliceable");
+            foreach (GameObject g in interactables)
             {
                 if (g.transform.parent == null)
                     g.transform.SetParent(logicsStuff);
@@ -64,13 +70,13 @@ public class ObjectSorter : EditorWindow
             foreach (GameObject g in lighting)
             {
                 if (g.transform.parent == null)
-                    g.transform.SetParent(decorativeStuff);
+                    g.transform.SetParent(lightStuff);
             }
             ReflectionProbe[] probes = GameObject.FindObjectsOfType<ReflectionProbe>();
             foreach (ReflectionProbe g in probes)
             {
                 if (g.transform.parent == null)
-                    g.transform.SetParent(decorativeStuff);
+                    g.transform.SetParent(lightStuff);
             }
         }
     }

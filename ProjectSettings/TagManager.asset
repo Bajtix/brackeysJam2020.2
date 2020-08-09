@@ -12,6 +12,7 @@ TagManager:
   - Ball 2
   - Small Detail
   - Interactable
+  - LightSource
   layers:
   - Default
   - TransparentFX
