@@ -4,7 +4,7 @@ public class MinecartLevel : MonoBehaviour
 {
     public float tug = 1;
     public float ctug;
-    public float bound;
+    public Vector2 bound;
     public GameObject cart1;
     public GameObject cart2;
 
@@ -14,21 +14,24 @@ public class MinecartLevel : MonoBehaviour
     {
         if (!tugActive) return;
         soundSource.loop = false;
-
-        if (ctug < bound && tug > 0)
+        ctug += tug * Time.deltaTime;
+        if (tug > 0 && cart1.transform.position.x < bound.x)
         {
-            ctug += tug * Time.deltaTime;
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
+        }
+        if (tug > 0 && cart2.transform.position.x > bound.y)
+        {
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
-            soundSource.loop = true;
         }
 
-        if (ctug > 0 && tug < 0)
+
+        if (tug < 0 && cart1.transform.position.x > bound.y)
         {
-            ctug += tug * Time.deltaTime;
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
+        }
+        if (tug < 0 && cart2.transform.position.x < bound.x)
+        { 
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
-            soundSource.loop = true;
         }
 
         if (!soundSource.loop)
