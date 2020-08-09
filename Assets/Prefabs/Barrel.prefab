@@ -1674,6 +1674,7 @@ GameObject:
   - component: {fileID: 3668418183909564643}
   - component: {fileID: 7677922953828881041}
   - component: {fileID: 7677922953828881040}
+  - component: {fileID: 1613715712813270251}
   m_Layer: 10
   m_Name: Barrel.004
   m_TagString: Untagged
@@ -1774,6 +1775,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5486208315438837523, guid: 30966314558d56b4cb6fec0ae98b43f3, type: 3}
+--- !u!114 &1613715712813270251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798519982939878609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable: []
+  local: 1
+  isInstance: 1
+  controlRigidbody: 1
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
 --- !u!1 &5815427657406139899
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1808,7 @@ GameObject:
   - component: {fileID: 2114330102736957863}
   - component: {fileID: 7677922953828881069}
   - component: {fileID: 7677922953828881068}
+  - component: {fileID: 9137036019233603858}
   m_Layer: 10
   m_Name: Barrel.002
   m_TagString: Untagged
@@ -1887,6 +1909,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4087217790008439206, guid: 30966314558d56b4cb6fec0ae98b43f3, type: 3}
+--- !u!114 &9137036019233603858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5815427657406139899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable: []
+  local: 1
+  isInstance: 1
+  controlRigidbody: 1
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
 --- !u!1 &6695104209173565215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2213,7 @@ GameObject:
   - component: {fileID: 2514902223036863909}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: SliceReactor
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2261,6 +2303,7 @@ MonoBehaviour:
       m_Calls: []
   normal: {fileID: 8815406769704326203}
   shattered: {fileID: 1090072201514906897}
+  timeControlled: 1
 --- !u!82 &2514902223036863909
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2504,6 +2547,7 @@ GameObject:
   - component: {fileID: 4960148512493442861}
   - component: {fileID: 7677922953828881071}
   - component: {fileID: 7677922953828881070}
+  - component: {fileID: 9828929612447730}
   m_Layer: 10
   m_Name: Barrel.003
   m_TagString: Untagged
@@ -2604,6 +2648,26 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 922123856264816028, guid: 30966314558d56b4cb6fec0ae98b43f3, type: 3}
+--- !u!114 &9828929612447730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524613409579952600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f295bfdea6516d0408a9733fa93c0ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentsToDisable: []
+  local: 1
+  isInstance: 1
+  controlRigidbody: 1
+  metadata: 
+  locked: 0
+  canBeLocked: 1
+  mats: []
 --- !u!1 &7585603165791478417
 GameObject:
   m_ObjectHideFlags: 0
