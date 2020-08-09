@@ -69,6 +69,8 @@ public class LevelInfo : MonoBehaviour
 
     public UnityEvent onLoad;
     private bool reloadClicked = false;
+    public GameObject padlock;
+    public bool lockState;
     private void Start()
     {
         levelFailed.SetActive(false);
@@ -220,6 +222,7 @@ public class LevelInfo : MonoBehaviour
 
         if(timerRunning)
         {
+            padlock.SetActive(lockState);
             timePassed += Time.unscaledDeltaTime;
             bool[] checks = new bool[3];
             //Time goal
