@@ -13,25 +13,40 @@ public class MinecartLevel : MonoBehaviour
     private void Update()
     {
         if (!tugActive) return;
+
         soundSource.loop = false;
         ctug += tug * Time.deltaTime;
+        float sstime = soundSource.time;
+        soundSource.Pause();
         if (tug > 0 && cart1.transform.position.x < bound.x)
         {
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
+            if (!soundSource.isPlaying)
+                soundSource.Play();
+            soundSource.loop = true;
         }
         if (tug > 0 && cart2.transform.position.x > bound.y)
         {
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
+            soundSource.loop = true;
+            if (!soundSource.isPlaying)
+                soundSource.Play();
         }
 
 
         if (tug < 0 && cart1.transform.position.x > bound.y)
         {
             cart1.transform.position += new Vector3(tug * Time.deltaTime, 0, 0);
+            if (!soundSource.isPlaying)
+                soundSource.Play();
+            soundSource.loop = true;
         }
         if (tug < 0 && cart2.transform.position.x < bound.x)
         { 
             cart2.transform.position -= new Vector3(tug * Time.deltaTime, 0, 0);
+            if (!soundSource.isPlaying)
+                soundSource.Play();
+            soundSource.loop = true;
         }
 
         if (!soundSource.loop)
