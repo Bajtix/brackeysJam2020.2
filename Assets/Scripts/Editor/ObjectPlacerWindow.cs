@@ -100,14 +100,18 @@ public class ObjectPlacerWindow : EditorWindow
             {
                 Debug.Log(hit.collider.gameObject.name);
                 next = Random.Range(0, pack.objects.Length);
-                GameObject g = randomRot ? Instantiate(pack.objects[next], hit.point, Quaternion.Euler(0,Random.Range(0,360),0) *Quaternion.Euler(additionalRot)) : Instantiate(pack.objects[next], hit.point, Quaternion.LookRotation(hit.normal) * Quaternion.Euler(additionalRot));
+                GameObject w = (GameObject)PrefabUtility.InstantiatePrefab(pack.objects[next]);
+                w.transform.position = hit.point;
+                w.transform.rotation = randomRot ? Quaternion.Euler(0, Random.Range(0, 360), 0) * Quaternion.Euler(additionalRot) : Quaternion.LookRotation(hit.normal) * Quaternion.Euler(additionalRot);
+                //GameObject g = randomRot ? Instantiate(pack.objects[next], hit.point, Quaternion.Euler(0,Random.Range(0,360),0) *Quaternion.Euler(additionalRot)) : Instantiate(pack.objects[next], hit.point, );
                 if(pack.randomiseMaterials)
                 {
                     Material m = pack.randomMaterials[Random.Range(0, pack.randomMaterials.Length - 1)];
-                    g.GetComponent<MeshRenderer>().material = m;
+                    w.GetComponent<MeshRenderer>().material = m;
                 }
-                g.tag = "Small Detail";
-                Undo.RegisterCreatedObjectUndo(g, "Create GameObject");
+                if (w.CompareTag("Untagged"))
+                w.tag = "Small Detail";
+                Undo.RegisterCreatedObjectUndo(w, "Create GameObject");
                 Repaint();
                 //HandleUtility.AddDefaultControl(0);
             }
