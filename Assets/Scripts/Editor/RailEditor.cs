@@ -115,6 +115,19 @@ public class RailEditor : Editor
             DestroyRail();
             self.segmentCount = 0;
         }
+
+        if (GUILayout.Button("Generate waypoints for animation"))
+        {
+            int w = 0;
+            foreach (RailPiece r in self.railPieces)
+            {
+                GameObject g = new GameObject("Rail waypoint " + w);
+                g.transform.position = r.bones[r.bones.Count - 1].position;
+                g.transform.rotation = r.bones[r.bones.Count - 1].rotation;
+                w++;
+            }
+        }
+
         ((RailBuilder)this.target).Refresh();
         if (self.railPieces != null)
         {
