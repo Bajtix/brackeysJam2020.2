@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
 public class SwordController : MonoBehaviour
 {
 
@@ -28,7 +27,6 @@ public class SwordController : MonoBehaviour
 
     private Vector3 slicerMotion;
     private Vector3 slicerLastPos;
-    
 
     private void Start()
     {
@@ -37,7 +35,9 @@ public class SwordController : MonoBehaviour
     private void Update()
     {
         if (Player.instance.dead)
+        {
             return;
+        }
 
         motion = viewModel.transform.position - lastPos;
         lastPos = viewModel.transform.position;
@@ -78,7 +78,7 @@ public class SwordController : MonoBehaviour
             playbackMode = false;
 
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit))
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
             {
                 if (hit.collider.GetComponent<TELinker>() != null)
                 {
@@ -90,14 +90,16 @@ public class SwordController : MonoBehaviour
                 }
             }
         }
-        
+
         if (Input.GetButtonDown("Use"))
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, 4))
             {
                 if (hit.collider.GetComponent<Interactable>() != null)
+                {
                     hit.collider.GetComponent<Interactable>().E();
+                }
             }
         }
 
@@ -115,18 +117,22 @@ public class SwordController : MonoBehaviour
         if (Player.instance.energy <= 0)
         {
             playbackMode = false;
+
         }
         TimeController.instance.playbackMode = playbackMode;
 
 
         if (TimeController.instance.playbackMode)
+        {
             return;
+        }
+
         if (drawn)
         {
             Vector3 mouseDirection = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 
             mouseSv = Vector3.Lerp(mouseSv, mouseDirection * prediction, Time.deltaTime * swordPredictionSpeed);
-            float tilt = Mathf.Clamp(motion.y *2,-2,2);
+            float tilt = Mathf.Clamp(motion.y * 2, -2, 2);
             viewModel.transform.localRotation = Quaternion.Lerp(viewModel.transform.localRotation, Quaternion.Euler(tilt * 45, 90, 90), Time.deltaTime * 10);
 
             trail.SetActive(true);
@@ -140,18 +146,20 @@ public class SwordController : MonoBehaviour
             trail.SetActive(false);
             sword.position = swordIdlePosition.position;
             sword.rotation = swordIdlePosition.rotation;
-            
+
         }
 
-        if(Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire1"))
+        {
             Time.timeScale = 1;
+        }
 
         swordSlicer.slicing = drawn;
     }
     public void Deflect()
     {
-        swordLook.position -= slicerMotion*100;
-       
+        swordLook.position -= slicerMotion * 100;
+
         Player.instance.CameraLook(swordLook.position);
     }
 }
