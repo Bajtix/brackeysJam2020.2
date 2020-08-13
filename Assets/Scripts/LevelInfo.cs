@@ -93,6 +93,7 @@ public class LevelInfo : MonoBehaviour
         leveldescription.text = "";
         timelimit.text = "Time goal: " + timeToComplete + "s";
         killlimit.text = "Kill goal: " + enemyCount + " enemies";
+        LeanTween.delayedCall(5, () => startingSequence = true);
         LeanTween.delayedCall(7.5f, () =>
         {
             videoPlayer.Stop();
@@ -100,7 +101,7 @@ public class LevelInfo : MonoBehaviour
             display.SetActive(false);
             LeanTween.alphaCanvas(panel, 1, 2).setOnComplete(() =>
             {
-                startingSequence = true;
+                
                 StartCoroutine("WriteDescription");
                 LeanTween.delayedCall(levelDescription.Length * typeWriterSpeed + 1.3f, () =>
                 {
