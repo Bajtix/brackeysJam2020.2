@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -43,8 +44,9 @@ public class Player : MonoBehaviour
     private Vector2 camLast;
 
     public bool dead = false;
-
+    private bool invokedEvent = false;
     public AudioSource stepSource;
+    public UnityEvent onEnergyEnd;
 
     #region Singleton
     public static Player instance;
@@ -80,6 +82,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(energy <= 0 && !invokedEvent)
+        {
+            invokedEvent = true;
+            onEnergyEnd.Invoke();
+        }
         HealthVisualiser.SetFloat("Saturation", HP / maxHP);
         EnergyVisualiser.SetColor("_EmissionColor", Color.Lerp(emptyColor, fullColor, energy / playerEnergy));
         if (Input.GetKeyDown(KeyCode.R))

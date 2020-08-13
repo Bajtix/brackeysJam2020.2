@@ -68,4 +68,19 @@ public class Lever : Interactable
         
         
     }
+
+    public void Switch(bool state)
+    {
+        isOn = state;
+        if (isOn)
+        {
+            onEnable.Invoke();
+        }
+
+        if (!isOn)
+        {
+            onDisable.Invoke();
+        }
+
+    }
 }

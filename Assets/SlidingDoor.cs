@@ -48,4 +48,9 @@ public class SlidingDoor : MonoBehaviour
         opened = false;
         GetComponent<AudioSource>().Play();
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(transform.position + slide, 0.2f);
+    }
 }
