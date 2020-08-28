@@ -28,6 +28,8 @@ public class SwordController : MonoBehaviour
     private Vector3 slicerMotion;
     private Vector3 slicerLastPos;
 
+    public Material rewindMatIFX;
+
     private void Start()
     {
         swordLook = new GameObject("Sword Look").transform;
@@ -49,7 +51,10 @@ public class SwordController : MonoBehaviour
         motion = motion.normalized;
         drawn = Input.GetButton("Fire1");
         playbackMode = Input.GetButton("Rewind");
-
+        if (playbackMode)
+            rewindMatIFX.SetFloat("_SINE", 0.02f);
+        else
+            rewindMatIFX.SetFloat("_SINE", 0f);
 
         RaycastHit h;
         if (Physics.Raycast(transform.position, transform.forward, out h))
@@ -126,19 +131,26 @@ public class SwordController : MonoBehaviour
         {
             return;
         }
-
+        //First we check if the sword is drawn
         if (drawn)
         {
+            //if it is we get the mouse input axis using unity's input class
             Vector3 mouseDirection = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-
+            //then we make it lerp slowly from value to value. We aslo create a prediction based on predictionAmount
             mouseSv = Vector3.Lerp(mouseSv, mouseDirection * prediction, Time.deltaTime * swordPredictionSpeed);
+            //the sword tilt is calculated using the motion's Y componetnt, which is created by taking the sword's movement and normalizing it's absolute value.
             float tilt = Mathf.Clamp(motion.y * 2, -2, 2);
             viewModel.transform.localRotation = Quaternion.Lerp(viewModel.transform.localRotation, Quaternion.Euler(tilt * 45, 90, 90), Time.deltaTime * 10);
 
+            //the sword trail (the fast movement effect is enabled)
             trail.SetActive(true);
+            //and the sword is positioned in the center of player's vision
             sword.position = swordDrawnPosition.position;
+            //then we calculate the sword look transform which exists only to make the rotation calculations easier by calculating a position and not a quaternion rotation
             swordLook.position = Vector3.Lerp(swordLook.position, transform.position + transform.forward * 10 + transform.TransformVector(mouseSv), Time.deltaTime * swordSpeed);
+            //after we make the sword look at the swordLook object the only thing left is to slow down time
             sword.LookAt(swordLook);
+            //done!
             Time.timeScale = timeSlowdown;
         }
         else

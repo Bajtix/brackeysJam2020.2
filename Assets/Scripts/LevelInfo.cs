@@ -20,6 +20,7 @@ public class LevelInfo : MonoBehaviour
         if (instance != null)
             Destroy(instance);
         instance = this;
+        variables = new int[100];
     }
     #endregion
 
@@ -71,8 +72,12 @@ public class LevelInfo : MonoBehaviour
     private bool reloadClicked = false;
     public GameObject padlock;
     public bool lockState;
+
+    public int[] variables;
+
     private void Start()
     {
+        
         levelFailed.SetActive(false);
 
         maskPlayer.time = 3;

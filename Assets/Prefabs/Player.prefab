@@ -381,7 +381,7 @@ MonoBehaviour:
       motionGridSize: 64
       colorBlindnessType: 0
       colorBlindnessStrength: 1
-  m_Resources: {fileID: 0}
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
@@ -411,6 +411,7 @@ MonoBehaviour:
   energyDrown: 2
   swordSlicer: {fileID: 8201327668454690447}
   viewModel: {fileID: 9012144713830849431}
+  rewindMatIFX: {fileID: 2100000, guid: 1068332e63bbd3145a2c9535cde3f12d, type: 2}
 --- !u!114 &8201327667620008454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postProcessResources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   ifx: {fileID: 2100000, guid: 6769c48893a59cc4da9125204e1d685a, type: 2}
+  ifx2: {fileID: 2100000, guid: 1068332e63bbd3145a2c9535cde3f12d, type: 2}
 --- !u!1 &8201327667922968642
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +654,9 @@ MonoBehaviour:
   energy: 10
   dead: 0
   stepSource: {fileID: 6473256170476396701}
+  onEnergyEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &8201327668337917161
 CharacterController:
   m_ObjectHideFlags: 0
