@@ -90,6 +90,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &2066615773089618732
@@ -403,11 +404,11 @@ MonoBehaviour:
   sword: {fileID: 8201327668264126412}
   swordIdlePosition: {fileID: 8201327667922968645}
   swordDrawnPosition: {fileID: 8201327668184340253}
-  swordSpeed: 8
-  swordPredictionSpeed: 2
+  swordSpeed: 16
+  swordPredictionSpeed: 2.5
   trail: {fileID: 8201327668618125291}
-  prediction: 10
-  timeSlowdown: 0.25
+  prediction: 18
+  timeSlowdown: 0.08
   energyDrown: 2
   swordSlicer: {fileID: 8201327668454690447}
   viewModel: {fileID: 9012144713830849431}
@@ -652,6 +653,9 @@ MonoBehaviour:
   energy: 10
   dead: 0
   stepSource: {fileID: 6473256170476396701}
+  onEnergyEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!143 &8201327668337917161
 CharacterController:
   m_ObjectHideFlags: 0
