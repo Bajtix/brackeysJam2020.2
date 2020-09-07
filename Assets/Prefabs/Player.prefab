@@ -43,8 +43,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.98470235, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 15
+  m_Intensity: 0.57
+  m_Range: 30
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -232,9 +232,8 @@ GameObject:
   - component: {fileID: 8201327667620008450}
   - component: {fileID: 8201327667620008451}
   - component: {fileID: 8201327667620008453}
-  - component: {fileID: 8201327667620008452}
   - component: {fileID: 8201327667620008455}
-  - component: {fileID: 8201327667620008454}
+  - component: {fileID: 3154132033373750019}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -329,7 +328,30 @@ MonoBehaviour:
   locked: 0
   canBeLocked: 0
   mats: []
---- !u!114 &8201327667620008452
+--- !u!114 &8201327667620008455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201327667620008449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e82881feff41744bafde518f3c1af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 8201327668264126412}
+  swordIdlePosition: {fileID: 8201327667922968645}
+  swordDrawnPosition: {fileID: 8201327668184340253}
+  swordSpeed: 20
+  swordPredictionSpeed: 5
+  trail: {fileID: 8201327668618125291}
+  prediction: 22
+  timeSlowdown: 0.08
+  energyDrown: 2
+  swordSlicer: {fileID: 8201327668454690447}
+  viewModel: {fileID: 9012144713830849431}
+--- !u!114 &3154132033373750019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,50 +404,13 @@ MonoBehaviour:
       motionGridSize: 64
       colorBlindnessType: 0
       colorBlindnessStrength: 1
-  m_Resources: {fileID: 0}
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &8201327667620008455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8201327667620008449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e82881feff41744bafde518f3c1af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sword: {fileID: 8201327668264126412}
-  swordIdlePosition: {fileID: 8201327667922968645}
-  swordDrawnPosition: {fileID: 8201327668184340253}
-  swordSpeed: 16
-  swordPredictionSpeed: 2.5
-  trail: {fileID: 8201327668618125291}
-  prediction: 18
-  timeSlowdown: 0.08
-  energyDrown: 2
-  swordSlicer: {fileID: 8201327668454690447}
-  viewModel: {fileID: 9012144713830849431}
---- !u!114 &8201327667620008454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8201327667620008449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548ce48720e5ef54ebaa2b6f1552263f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  postProcessResources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  ifx: {fileID: 2100000, guid: 6769c48893a59cc4da9125204e1d685a, type: 2}
 --- !u!1 &8201327667922968642
 GameObject:
   m_ObjectHideFlags: 0

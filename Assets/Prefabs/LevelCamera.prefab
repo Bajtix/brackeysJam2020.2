@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6692984344737191109}
   - component: {fileID: 6692984344737191110}
   - component: {fileID: 6692984344737191111}
-  - component: {fileID: 6692984344737191108}
+  - component: {fileID: 4355436866913357785}
   m_Layer: 8
   m_Name: LevelCamera
   m_TagString: LevelCamera
@@ -84,7 +84,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6692984344737190968}
   m_Enabled: 1
---- !u!114 &6692984344737191108
+--- !u!114 &4355436866913357785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
     m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25

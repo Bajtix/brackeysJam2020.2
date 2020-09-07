@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+/*using UnityEngine.Rendering.PostProcessing;
 
 
 public class PostProcessingFix : MonoBehaviour
@@ -20,3 +20,4 @@ public class PostProcessingFix : MonoBehaviour
         Graphics.Blit(source, destination, ifx);
     }
 }
+*/
